@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perez · Zitt Family Tree</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(160deg, #fdf6ec 0%, #f0e6d2 100%);
+      min-height: 100vh;
+      padding: 30px 0 60px;
+    }
+
+    header { text-align: center; margin-bottom: 16px; padding: 0 20px; }
+    header h1 { font-size: 2em; color: #2c1a0e; letter-spacing: 3px; text-transform: uppercase; }
+    header p  { color: #9b7340; font-style: italic; margin-top: 4px; font-size: 0.9em; }
+
+    .toggle-bar {
+      display: flex; justify-content: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .toggle-bar button {
+      font-family: 'Georgia', serif;
+      font-size: 0.82em; letter-spacing: 0.5px;
+      padding: 7px 20px; border-radius: 25px; cursor: pointer;
+      border: 2px solid #d4b896; background: #fff; color: #7d4e1e;
+      transition: all .18s;
+    }
+    .toggle-bar button:hover { background: #f8ece0; }
+    .toggle-bar button.active { background: #9b7340; color: #fff; border-color: #9b7340; }
+    .toggle-bar button.active.zitt-btn { background: #2471a3; border-color: #2471a3; }
+
+    .tree-mode-perez .zitt-side { display: none !important; }
+    .tree-mode-zitt  .perez-side { display: none !important; }
+
+    #tree-scroll { overflow-x: auto; padding: 0 20px 20px; }
+
+    #tree {
+      position: relative;
+      min-width: 3800px;
+      padding: 0 10px 20px;
+    }
+
+    #svg-lines {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: visible;
+    }
+
+    .gen-row {
+      display: flex; justify-content: center;
+      align-items: flex-start; gap: 9px;
+      margin-bottom: 62px; position: relative;
+      z-index: 1; flex-wrap: nowrap;
+    }
+
+    .gen-label {
+      text-align: center; font-size: 0.64em;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #b89060; margin-bottom: 7px;
+    }
+
+    .fam-gap { flex: 0 0 60px; align-self: center; height: 2px;
+               background: linear-gradient(90deg, transparent, #d4b896 50%, transparent); }
+    .v-sep   { flex: 0 0 1px; height: 50px; border-left: 2px dashed #ccc;
+               align-self: center; margin: 0 5px; }
+
+    .couple { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+    .heart  { font-size: 1.1em; color: #c0392b; flex-shrink: 0; }
+    .heart.div { color: #bbb; font-style: normal; font-size: 0.9em; }
+
+    .card {
+      background: #fff; border: 2px solid #d4b896;
+      border-radius: 10px; padding: 9px 10px; width: 132px;
+      text-align: center; box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+      transition: transform .18s, box-shadow .18s; flex-shrink: 0;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.13); }
+
+    .card.you      { border-color: #c0392b; background: #fff5f5; border-width: 3px; }
+    .card.spouse   { border-color: #7d3c98; border-style: dashed; }
+    .card.half     { border-color: #1e8449; border-style: dashed; }
+    .card.child-m  { border-color: #2980b9; }
+    .card.child-f  { border-color: #c0397b; }
+    .card.unknown  { border-color: #b0b0b0; border-style: dotted; background: #f8f8f8; }
+    .card.zitt     { border-color: #2471a3; background: #f0f6fc; }
+    .card.zitt-sib { border-color: #2471a3; }
+    .card.cousin   { border-color: #6c3483; background: #fdf2ff; }
+    .card.tbd      { border-color: #aaa; border-style: dashed; background: #fafafa; }
+    .card.divorced { border-color: #bbb; background: #f7f7f7; opacity: 0.85; }
+    .card.in-law   { border-color: #888; }
+    .card.niece-m  { border-color: #1a7abf; }
+    .card.niece-f  { border-color: #b0306a; }
+
+    .card .name   { font-size: 0.77em; font-weight: bold; color: #2c1a0e; line-height: 1.3; }
+    .card .maiden { font-size: 0.63em; color: #9b7340; font-style: italic; margin-top: 2px; }
+    .card .dob    { font-size: 0.64em; color: #777; margin-top: 4px; }
+    .card .note   { font-size: 0.6em; color: #999; font-style: italic; margin-top: 3px; }
+    .card .tag {
+      display: inline-block; font-size: 0.58em; color: #fff;
+      background: #9b7340; border-radius: 20px;
+      padding: 2px 7px; margin-top: 5px; letter-spacing: 0.3px;
+    }
+    .card.you    .tag  { background: #c0392b; }
+    .card.spouse .tag  { background: #7d3c98; }
+    .card.half   .tag  { background: #1e8449; }
+    .card.unknown .tag { background: #999; }
+    .card.child-m .tag { background: #2980b9; }
+    .card.child-f .tag { background: #c0397b; }
+    .card.zitt .tag, .card.zitt-sib .tag { background: #2471a3; }
+    .card.cousin  .tag { background: #6c3483; }
+    .card.tbd     .tag { background: #aaa; }
+    .card.divorced .tag { background: #888; }
+    .card.in-law  .tag { background: #666; }
+    .card.niece-m .tag { background: #1a7abf; }
+    .card.niece-f .tag { background: #b0306a; }
+
+    .banner-row { display: flex; justify-content: space-between; align-items: center;
+                  margin-bottom: 5px; padding: 0 30px; }
+    .side-banner { font-size: 0.7em; font-weight: bold; letter-spacing: 1px;
+                   padding: 4px 12px; border-radius: 20px; display: inline-block; }
+    .side-banner.perez { background: #f8ece0; color: #7d4e1e; border: 1px solid #d4b896; }
+    .side-banner.zitt  { background: #e8f0fb; color: #1a4a7a; border: 1px solid #90b8d8; }
+
+    #legend { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+              margin-top: 10px; padding: 0 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.72em; color: #555; }
+    .legend-box  { width: 18px; height: 11px; border-radius: 3px; border: 2px solid; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌳 Perez · Zitt Family Tree</h1>
+  <p>Juan Miguel Perez &amp; Melissa Perez (née Zitt) &nbsp;·&nbsp; Updated March 2026</p>
+</header>
+
+<div class="toggle-bar">
+  <button id="btn-all"   onclick="setMode('all')"   class="active">🌳 Full Family Tree</button>
+  <button id="btn-perez" onclick="setMode('perez')">🏠 Perez Family Only</button>
+  <button id="btn-zitt"  onclick="setMode('zitt')"  class="zitt-btn">🏠 Zitt · Coppola Family Only</button>
+</div>
+
+<div class="banner-row">
+  <span class="side-banner perez perez-side">⬅ Perez · Santana Family</span>
+  <span style="font-size:0.72em;color:#aaa;font-style:italic;">← families join at Juan &amp; Melissa →</span>
+  <span class="side-banner zitt zitt-side">Zitt · Coppola Family ➡</span>
+</div>
+
+<div id="tree-scroll">
+<div id="tree">
+  <svg id="svg-lines"></svg>
+
+  <!-- ROW 1 GRANDPARENTS -->
+  <p class="gen-label">Grandparents</p>
+  <div class="gen-row" id="row-gp">
+
+    <div class="couple perez-side">
+      <div class="card" id="gp-gonzalo">
+        <div class="name">Gonzalo Perez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandfather</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card" id="gp-osiris">
+        <div class="name">Osiris Perez</div>
+        <div class="maiden">née Ramos</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandmother</span>
+      </div>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="couple perez-side">
+      <div class="card" id="gp-evaristo">
+        <div class="name">Evaristo Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandfather</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card" id="gp-zolia">
+        <div class="name">Zolia Santana</div>
+        <div class="maiden">née Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandmother</span>
+      </div>
+    </div>
+
+    <div class="fam-gap"></div>
+
+    <div class="couple zitt-side">
+      <div class="card unknown" id="zp-gf">
+        <div class="name">Paternal Grandfather</div>
+        <div class="maiden">Zitt family</div>
+        <div class="dob">To be researched</div>
+        <span class="tag">Grandfather</span>
+      </div>
+      <span class="heart" style="color:#bbb;">♥</span>
+      <div class="card unknown" id="zp-gm">
+        <div class="name">Paternal Grandmother</div>
+        <div class="maiden">Zitt family</div>
+        <div class="dob">To be researched</div>
+        <span class="tag">Grandmother</span>
+      </div>
+    </div>
+
+    <div class="v-sep zitt-side"></div>
+
+    <div class="couple zitt-side">
+      <div class="card zitt" id="coppola-gf">
+        <div class="name">Louis Joseph Coppola</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandfather</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card zitt" id="coppola-gm">
+        <div class="name">Anne Coppola</div>
+        <div class="maiden">née Neri</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grandmother</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ROW 2 PARENTS + AUNT/UNCLE -->
+  <p class="gen-label">Parents &amp; Aunt / Uncle Generation</p>
+  <div class="gen-row" id="row-parents">
+
+    <div class="couple perez-side">
+      <div class="card cousin" id="ana-osiris">
+        <div class="name">Ana Osiris Martinez</div>
+        <div class="maiden">née Perez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Aunt (Paternal)</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card cousin" id="antonio-sr">
+        <div class="name">Antonio Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Uncle</span>
+      </div>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="couple perez-side">
+      <div class="card" id="father">
+        <div class="name">Juan Gonzalo Perez</div>
+        <div class="dob">b. June 11, 1955</div>
+        <span class="tag">Father</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card" id="mother">
+        <div class="name">Zaida Perez</div>
+        <div class="maiden">née Santana</div>
+        <div class="dob">b. Sep 13, 1957</div>
+        <span class="tag">Mother</span>
+      </div>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="card unknown perez-side" id="olga">
+      <div class="name">Olga</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Stepmother</span>
+    </div>
+
+    <div class="card unknown perez-side" id="dayanna-father">
+      <div class="name">Unknown Father</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Dayanna's Father</span>
+    </div>
+
+    <div class="fam-gap"></div>
+
+    <div class="couple zitt-side">
+      <div class="card zitt" id="dennis-zitt">
+        <div class="name">Dennis Herbert Zitt</div>
+        <div class="dob">b. Apr 27, 1949</div>
+        <span class="tag">Father-in-law</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card zitt" id="anna-zitt">
+        <div class="name">Anna Louise Zitt</div>
+        <div class="maiden">née Coppola</div>
+        <div class="dob">b. Mar 25, 1952</div>
+        <span class="tag">Mother-in-law</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ROW 3 JUAN & MELISSA'S GENERATION -->
+  <p class="gen-label">Juan &amp; Melissa's Generation</p>
+  <div class="gen-row" id="row-gen3">
+
+    <div class="card cousin perez-side" id="antonio-jr">
+      <div class="name">Antonio Martinez</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Cousin</span>
+    </div>
+
+    <div class="couple perez-side">
+      <div class="card cousin" id="ana-martinez">
+        <div class="name">Ana Martinez</div>
+        <div class="maiden">now Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Cousin</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card cousin" id="daniel-ramirez">
+        <div class="name">Daniel Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Cousin-in-law</span>
+      </div>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="couple perez-side">
+      <div class="card divorced" id="gonzalo">
+        <div class="name">Gonzalo E. Perez</div>
+        <div class="dob">b. July 27, 1976</div>
+        <div class="note">Divorced · No children</div>
+        <span class="tag">Brother</span>
+      </div>
+      <span class="heart div">✕</span>
+      <div class="card divorced" id="maria-alfaro">
+        <div class="name">Maria Perez</div>
+        <div class="maiden">née Alfaro</div>
+        <span class="tag">Ex-wife</span>
+      </div>
+    </div>
+
+    <div class="couple" id="main-couple">
+      <div class="card you" id="juan">
+        <div class="name">Juan Miguel Perez</div>
+        <div class="dob">b. Oct 28, 1980</div>
+        <span class="tag">You</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card spouse" id="melissa">
+        <div class="name">Melissa Perez</div>
+        <div class="maiden">née Zitt</div>
+        <div class="dob">b. Mar 15, 1981</div>
+        <span class="tag">Spouse</span>
+      </div>
+    </div>
+
+    <div class="couple perez-side">
+      <div class="card" id="daniel">
+        <div class="name">Daniel Orlando Perez</div>
+        <div class="dob">b. June 23, 1982</div>
+        <span class="tag">Brother</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="jennifer">
+        <div class="name">Jennifer Perez</div>
+        <div class="maiden">née Safanova</div>
+        <span class="tag">Sister-in-law</span>
+      </div>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="card half perez-side" id="joanna">
+      <div class="name">Joanna Marie Perez</div>
+      <div class="dob">b. 2005</div>
+      <span class="tag">Half-Sister</span>
+    </div>
+
+    <div class="card half perez-side" id="dayanna">
+      <div class="name">Dayanna</div>
+      <div class="maiden">Last name TBD</div>
+      <div class="note">Olga's daughter (diff. father)</div>
+      <span class="tag">Joanna's Half-Sister</span>
+    </div>
+
+    <div class="fam-gap"></div>
+
+    <div class="couple zitt-side">
+      <div class="card zitt-sib" id="deanna">
+        <div class="name">Deanna Marie Lebet</div>
+        <div class="maiden">née Zitt</div>
+        <div class="dob">b. Aug 13, 1969</div>
+        <span class="tag">Sister-in-law</span>
+      </div>
+      <span class="heart div">✕</span>
+      <div class="card divorced" id="john-lebet-sr">
+        <div class="name">John Lebet</div>
+        <div class="note">Divorced</div>
+        <span class="tag">Ex-husband</span>
+      </div>
+    </div>
+
+    <div class="couple zitt-side">
+      <div class="card zitt-sib" id="patricia">
+        <div class="name">Patricia Ann Welton</div>
+        <div class="maiden">née Zitt</div>
+        <div class="dob">b. June 12, 1971</div>
+        <span class="tag">Sister-in-law</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="michael-welton">
+        <div class="name">Michael Welton</div>
+        <span class="tag">Brother-in-law</span>
+      </div>
+    </div>
+
+    <div class="card zitt-sib" id="dennis-wayne">
+      <div class="name">Dennis Wayne Zitt</div>
+      <div class="dob">b. June 14, 1974</div>
+      <div class="note">Divorced · No children</div>
+      <span class="tag">Brother-in-law</span>
+    </div>
+
+  </div>
+
+  <!-- ROW 4 CHILDREN -->
+  <p class="gen-label">Children &amp; Next Generation</p>
+  <div class="gen-row" id="row-kids">
+
+    <div class="card cousin perez-side" id="melenia">
+      <div class="name">Melenia Ramirez</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">2nd Cousin</span>
+    </div>
+    <div class="card cousin perez-side" id="alejandro">
+      <div class="name">Alejandro Ramirez</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">2nd Cousin</span>
+    </div>
+    <div class="card cousin perez-side" id="mya">
+      <div class="name">Mya Ramirez</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">2nd Cousin</span>
+    </div>
+    <div class="card cousin perez-side" id="alexandria">
+      <div class="name">Alexandria Ramirez</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">2nd Cousin</span>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="card cousin perez-side" id="jamila">
+      <div class="name">Jamila Ramirez</div>
+      <div class="dob">b. Unknown</div>
+      <div class="note">Mother unknown</div>
+      <span class="tag">2nd Cousin</span>
+    </div>
+
+    <div class="v-sep perez-side"></div>
+
+    <div class="card child-f perez-side" id="sena">
+      <div class="name">Sena Sakura Perez</div>
+      <div class="dob">b. April 2014</div>
+      <span class="tag">Niece</span>
+    </div>
+
+    <div class="card child-m" id="julian">
+      <div class="name">Julian Lucas Perez</div>
+      <div class="dob">b. Feb 4, 2011</div>
+      <span class="tag">Son</span>
+    </div>
+    <div class="card child-f" id="alexa">
+      <div class="name">Alexa Santana Perez</div>
+      <div class="dob">b. Feb 4, 2015</div>
+      <span class="tag">Daughter</span>
+    </div>
+    <div class="card child-f" id="sophia">
+      <div class="name">Sophia Quinn Perez</div>
+      <div class="dob">b. Oct 4, 2022</div>
+      <span class="tag">Daughter</span>
+    </div>
+
+    <div class="fam-gap"></div>
+
+    <div class="card niece-m zitt-side" id="john-lebet-jr">
+      <div class="name">John Lebet</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Nephew</span>
+    </div>
+    <div class="card niece-m zitt-side" id="kevin-lebet">
+      <div class="name">Kevin Lebet</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Nephew</span>
+    </div>
+    <div class="card niece-m zitt-side" id="matthew-lebet">
+      <div class="name">Matthew Lebet</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Nephew</span>
+    </div>
+
+    <div class="v-sep zitt-side"></div>
+
+    <div class="card niece-f zitt-side" id="kaitlyn">
+      <div class="name">Kaitlyn</div>
+      <div class="maiden">Different father</div>
+      <span class="tag">Niece</span>
+    </div>
+
+    <div class="card niece-f zitt-side" id="stephanie-welton">
+      <div class="name">Stephanie Welton</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Niece</span>
+    </div>
+    <div class="card niece-m zitt-side" id="brian-welton">
+      <div class="name">Brian Welton</div>
+      <div class="dob">b. Unknown</div>
+      <span class="tag">Nephew</span>
+    </div>
+
+  </div>
+
+</div><!-- #tree -->
+</div><!-- #tree-scroll -->
+
+<!-- LEGEND -->
+<div id="legend">
+  <div class="legend-item"><div class="legend-box" style="border-color:#c0392b;background:#fff5f5;"></div><span>You</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#d4b896;background:#fff;"></div><span>Perez family</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#7d3c98;background:#fff;border-style:dashed;"></div><span>Spouse</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#6c3483;background:#fdf2ff;"></div><span>Cousin branch</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#2471a3;background:#f0f6fc;"></div><span>Zitt · Coppola</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#1e8449;background:#fff;border-style:dashed;"></div><span>Half-sibling</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#2980b9;background:#fff;"></div><span>Son / Nephew</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#c0397b;background:#fff;"></div><span>Daughter / Niece</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#bbb;background:#f7f7f7;"></div><span>Divorced</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#b0b0b0;background:#f8f8f8;border-style:dotted;"></div><span>To research</span></div>
+</div>
+
+<script>
+function setMode(mode) {
+  const tree = document.getElementById('tree');
+  tree.classList.remove('tree-mode-perez','tree-mode-zitt');
+  if (mode === 'perez') tree.classList.add('tree-mode-perez');
+  if (mode === 'zitt')  tree.classList.add('tree-mode-zitt');
+  ['all','perez','zitt'].forEach(m => {
+    const b = document.getElementById('btn-'+m);
+    b.classList.toggle('active', m === mode);
+  });
+  setTimeout(draw, 120);
+}
+
+function rel(id) {
+  const el = document.getElementById(id);
+  if (!el || el.offsetParent === null) return null;
+  const b = el.getBoundingClientRect();
+  const t = document.getElementById('tree').getBoundingClientRect();
+  return {
+    cx: b.left-t.left+b.width/2, cy: b.top-t.top+b.height/2,
+    top: b.top-t.top, bottom: b.bottom-t.top,
+    left: b.left-t.left, right: b.right-t.left,
+  };
+}
+
+function ln(svg,x1,y1,x2,y2,col,dash) {
+  const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+  l.setAttribute('x1',x1); l.setAttribute('y1',y1);
+  l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+  l.setAttribute('stroke',col||'#c4a06a'); l.setAttribute('stroke-width','2');
+  if(dash) l.setAttribute('stroke-dasharray','6 4');
+  svg.appendChild(l);
+}
+
+function tee(svg,px,py,kids,col,dash) {
+  kids=(kids||[]).filter(Boolean);
+  if(!kids.length) return;
+  const xs=kids.map(k=>k.cx);
+  const barY=py+(kids[0].top-py)*0.5;
+  ln(svg,px,py,px,barY,col,dash);
+  if(kids.length>1) ln(svg,Math.min(...xs),barY,Math.max(...xs),barY,col,dash);
+  kids.forEach(k=>ln(svg,k.cx,barY,k.cx,k.top,col,dash));
+}
+
+function draw() {
+  const svg=document.getElementById('svg-lines');
+  const tree=document.getElementById('tree');
+  svg.innerHTML='';
+  svg.setAttribute('width',tree.offsetWidth);
+  svg.setAttribute('height',tree.offsetHeight);
+
+  const C='#c4a06a', BL='#2471a3', GR='#1e8449', OR='#d35400';
+  const PU='#6c3483', KB='#2980b9';
+
+  const gpG=rel('gp-gonzalo'),gpO=rel('gp-osiris'),father=rel('father'),anaO=rel('ana-osiris');
+  if(gpG&&gpO&&father&&anaO) tee(svg,(gpG.cx+gpO.cx)/2,Math.max(gpG.bottom,gpO.bottom),[anaO,father],C);
+
+  const gpE=rel('gp-evaristo'),gpZ=rel('gp-zolia'),mother=rel('mother');
+  if(gpE&&gpZ&&mother) tee(svg,(gpE.cx+gpZ.cx)/2,Math.max(gpE.bottom,gpZ.bottom),[mother],C);
+
+  const zpgf=rel('zp-gf'),zpgm=rel('zp-gm'),dZitt=rel('dennis-zitt');
+  if(zpgf&&zpgm&&dZitt) tee(svg,(zpgf.cx+zpgm.cx)/2,Math.max(zpgf.bottom,zpgm.bottom),[dZitt],BL,true);
+
+  const cgf=rel('coppola-gf'),cgm=rel('coppola-gm'),aZitt=rel('anna-zitt');
+  if(cgf&&cgm&&aZitt) tee(svg,(cgf.cx+cgm.cx)/2,Math.max(cgf.bottom,cgm.bottom),[aZitt],BL);
+
+  const gonzalo=rel('gonzalo'),juan=rel('juan'),daniel=rel('daniel');
+  if(father&&mother&&gonzalo&&juan&&daniel)
+    tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[gonzalo,juan,daniel],C);
+  else if(father&&mother&&juan)
+    tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[juan],C);
+
+  const olga=rel('olga'),joanna=rel('joanna');
+  if(father&&olga&&joanna){
+    const ux=(father.cx+olga.cx)/2,fBy=father.bottom;
+    ln(svg,father.cx,fBy,father.cx,fBy+14,GR,true);
+    ln(svg,father.cx,fBy+14,ux,fBy+14,GR,true);
+    ln(svg,ux,fBy+14,ux,olga.bottom,GR,true);
+    tee(svg,ux,olga.bottom,[joanna],GR,true);
+  }
+
+  const dayF=rel('dayanna-father'),dayanna=rel('dayanna');
+  if(olga&&dayF&&dayanna){
+    const ux=(olga.cx+dayF.cx)/2,oBy=olga.bottom;
+    ln(svg,olga.cx,oBy,olga.cx,oBy+14,OR,true);
+    ln(svg,olga.cx,oBy+14,ux,oBy+14,OR,true);
+    ln(svg,ux,oBy+14,ux,Math.max(olga.bottom,dayF.bottom),OR,true);
+    tee(svg,ux,Math.max(olga.bottom,dayF.bottom),[dayanna],OR,true);
+  }
+
+  const antJr=rel('antonio-jr'),anaMtz=rel('ana-martinez'),antSr=rel('antonio-sr');
+  if(anaO&&antSr&&antJr&&anaMtz)
+    tee(svg,(anaO.right+antSr.left)/2,Math.max(anaO.bottom,antSr.bottom),[antJr,anaMtz],PU);
+
+  const deanna=rel('deanna'),patricia=rel('patricia'),dWayne=rel('dennis-wayne'),melissa=rel('melissa');
+  if(dZitt&&aZitt&&melissa){
+    const kids=[deanna,patricia,dWayne,melissa].filter(Boolean);
+    tee(svg,(dZitt.right+aZitt.left)/2,Math.max(dZitt.bottom,aZitt.bottom),kids,BL);
+  }
+
+  const dRam=rel('daniel-ramirez'),anaMart=rel('ana-martinez');
+  const mel=rel('melenia'),ale=rel('alejandro'),mya2=rel('mya'),alex=rel('alexandria');
+  if(anaMart&&dRam&&mel) tee(svg,(anaMart.right+dRam.left)/2,Math.max(anaMart.bottom,dRam.bottom),[mel,ale,mya2,alex].filter(Boolean),PU);
+
+  const jamila=rel('jamila');
+  if(dRam&&jamila){
+    const midY=dRam.bottom+(jamila.top-dRam.bottom)*0.5;
+    ln(svg,dRam.cx,dRam.bottom,dRam.cx,midY,PU,true);
+    ln(svg,dRam.cx,midY,jamila.cx,midY,PU,true);
+    ln(svg,jamila.cx,midY,jamila.cx,jamila.top,PU,true);
+  }
+
+  const danP=rel('daniel'),jennifer=rel('jennifer'),sena=rel('sena');
+  if(danP&&jennifer&&sena) tee(svg,(danP.right+jennifer.left)/2,Math.max(danP.bottom,jennifer.bottom),[sena],C);
+
+  const juanR=rel('juan'),melissaR=rel('melissa'),jul=rel('julian'),alx=rel('alexa'),soph=rel('sophia');
+  if(juanR&&melissaR&&jul)
+    tee(svg,(juanR.right+melissaR.left)/2,Math.max(juanR.bottom,melissaR.bottom),[jul,alx,soph].filter(Boolean),KB);
+
+  const jLSr=rel('john-lebet-sr'),jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
+  if(deanna&&jLSr&&jJr) tee(svg,(deanna.right+jLSr.left)/2,Math.max(deanna.bottom,jLSr.bottom),[jJr,kev,matt].filter(Boolean),BL);
+
+  const mWelton=rel('michael-welton'),steph=rel('stephanie-welton'),brian=rel('brian-welton');
+  if(patricia&&mWelton&&steph) tee(svg,(patricia.right+mWelton.left)/2,Math.max(patricia.bottom,mWelton.bottom),[steph,brian].filter(Boolean),BL);
+
+  const kaitlyn=rel('kaitlyn');
+  if(patricia&&kaitlyn){
+    const midY=patricia.bottom+(kaitlyn.top-patricia.bottom)*0.5;
+    ln(svg,patricia.cx,patricia.bottom,patricia.cx,midY,BL,true);
+    ln(svg,patricia.cx,midY,kaitlyn.cx,midY,BL,true);
+    ln(svg,kaitlyn.cx,midY,kaitlyn.cx,kaitlyn.top,BL,true);
+  }
+}
+
+window.addEventListener('load', draw);
+window.addEventListener('resize', draw);
+</script>
+</body>
+</html>
