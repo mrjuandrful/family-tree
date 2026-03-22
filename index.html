@@ -154,7 +154,6 @@
 <div id="tree">
   <svg id="svg-lines"></svg>
 
-  <!-- ROW 1 GRANDPARENTS -->
   <p class="gen-label">Grandparents</p>
   <div class="gen-row" id="row-gp">
 
@@ -228,7 +227,6 @@
   </div>
 
 
-  <!-- ROW 2 PARENTS + AUNT/UNCLE -->
   <p class="gen-label">Parents &amp; Aunt / Uncle Generation</p>
   <div class="gen-row" id="row-parents">
 
@@ -298,7 +296,6 @@
   </div>
 
 
-  <!-- ROW 3 JUAN & MELISSA'S GENERATION -->
   <p class="gen-label">Juan &amp; Melissa's Generation</p>
   <div class="gen-row" id="row-gen3">
 
@@ -326,17 +323,16 @@
     <div class="v-sep perez-side"></div>
 
     <div class="couple perez-side">
-      <div class="card divorced" id="gonzalo">
+      <div class="card" id="gonzalo">
         <div class="name">Gonzalo E. Perez</div>
         <div class="dob">b. July 27, 1976</div>
-        <div class="note">Divorced · No children</div>
         <span class="tag">Brother</span>
       </div>
-      <span class="heart div">✕</span>
-      <div class="card divorced" id="maria-alfaro">
+      <span class="heart">♥</span>
+      <div class="card in-law" id="maria-alfaro">
         <div class="name">Maria Perez</div>
         <div class="maiden">née Alfaro</div>
-        <span class="tag">Ex-wife</span>
+        <span class="tag">Sister-in-law</span>
       </div>
     </div>
 
@@ -371,6 +367,7 @@
 
     <div class="v-sep perez-side"></div>
 
+    <!-- Half-siblings -->
     <div class="card half perez-side" id="joanna">
       <div class="name">Joanna Marie Perez</div>
       <div class="dob">b. 2005</div>
@@ -386,6 +383,7 @@
 
     <div class="fam-gap"></div>
 
+    <!-- Zitt siblings -->
     <div class="couple zitt-side">
       <div class="card zitt-sib" id="deanna">
         <div class="name">Deanna Marie Lebet</div>
@@ -393,11 +391,10 @@
         <div class="dob">b. Aug 13, 1969</div>
         <span class="tag">Sister-in-law</span>
       </div>
-      <span class="heart div">✕</span>
-      <div class="card divorced" id="john-lebet-sr">
+      <span class="heart">♥</span>
+      <div class="card in-law" id="john-lebet-sr">
         <div class="name">John Lebet</div>
-        <div class="note">Divorced</div>
-        <span class="tag">Ex-husband</span>
+        <span class="tag">Brother-in-law</span>
       </div>
     </div>
 
@@ -424,10 +421,11 @@
 
   </div>
 
-  <!-- ROW 4 CHILDREN -->
+
   <p class="gen-label">Children &amp; Next Generation</p>
   <div class="gen-row" id="row-kids">
 
+    <!-- Ramirez cousins' children -->
     <div class="card cousin perez-side" id="melenia">
       <div class="name">Melenia Ramirez</div>
       <div class="dob">b. Unknown</div>
@@ -460,12 +458,7 @@
 
     <div class="v-sep perez-side"></div>
 
-    <div class="card child-f perez-side" id="sena">
-      <div class="name">Sena Sakura Perez</div>
-      <div class="dob">b. April 2014</div>
-      <span class="tag">Niece</span>
-    </div>
-
+    <!-- Juan + Melissa's children — always visible -->
     <div class="card child-m" id="julian">
       <div class="name">Julian Lucas Perez</div>
       <div class="dob">b. Feb 4, 2011</div>
@@ -482,8 +475,17 @@
       <span class="tag">Daughter</span>
     </div>
 
+    <!-- Daniel + Jennifer's daughter -->
+    <div class="v-sep perez-side"></div>
+    <div class="card child-f perez-side" id="sena">
+      <div class="name">Sena Sakura Perez</div>
+      <div class="dob">b. April 2014</div>
+      <span class="tag">Niece</span>
+    </div>
+
     <div class="fam-gap"></div>
 
+    <!-- Lebet children -->
     <div class="card niece-m zitt-side" id="john-lebet-jr">
       <div class="name">John Lebet</div>
       <div class="dob">b. Unknown</div>
@@ -502,12 +504,14 @@
 
     <div class="v-sep zitt-side"></div>
 
+    <!-- Kaitlyn (different father) -->
     <div class="card niece-f zitt-side" id="kaitlyn">
       <div class="name">Kaitlyn</div>
       <div class="maiden">Different father</div>
       <span class="tag">Niece</span>
     </div>
 
+    <!-- Welton children -->
     <div class="card niece-f zitt-side" id="stephanie-welton">
       <div class="name">Stephanie Welton</div>
       <div class="dob">b. Unknown</div>
@@ -521,24 +525,25 @@
 
   </div>
 
-</div><!-- #tree -->
-</div><!-- #tree-scroll -->
+</div>
+</div>
 
-<!-- LEGEND -->
 <div id="legend">
-  <div class="legend-item"><div class="legend-box" style="border-color:#c0392b;background:#fff5f5;"></div><span>You</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#d4b896;background:#fff;"></div><span>Perez family</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#7d3c98;background:#fff;border-style:dashed;"></div><span>Spouse</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#c0392b;"></div><span>You</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#d4b896;"></div><span>Perez family</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#7d3c98;border-style:dashed;"></div><span>Spouse</span></div>
   <div class="legend-item"><div class="legend-box" style="border-color:#6c3483;background:#fdf2ff;"></div><span>Cousin branch</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#2471a3;background:#f0f6fc;"></div><span>Zitt · Coppola</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#1e8449;background:#fff;border-style:dashed;"></div><span>Half-sibling</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#2980b9;background:#fff;"></div><span>Son / Nephew</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#c0397b;background:#fff;"></div><span>Daughter / Niece</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#2471a3;background:#f0f6fc;"></div><span>Zitt family</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#1e8449;border-style:dashed;"></div><span>Half-sibling</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#2980b9;"></div><span>Son / Nephew</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#c0397b;"></div><span>Daughter / Niece</span></div>
   <div class="legend-item"><div class="legend-box" style="border-color:#bbb;background:#f7f7f7;"></div><span>Divorced</span></div>
-  <div class="legend-item"><div class="legend-box" style="border-color:#b0b0b0;background:#f8f8f8;border-style:dotted;"></div><span>To research</span></div>
+  <div class="legend-item"><div class="legend-box" style="border-color:#b0b0b0;border-style:dotted;"></div><span>To research</span></div>
+</div>/div>
 </div>
 
 <script>
+// ── Toggle ──
 function setMode(mode) {
   const tree = document.getElementById('tree');
   tree.classList.remove('tree-mode-perez','tree-mode-zitt');
@@ -551,6 +556,7 @@ function setMode(mode) {
   setTimeout(draw, 120);
 }
 
+// ── Connector helpers ──
 function rel(id) {
   const el = document.getElementById(id);
   if (!el || el.offsetParent === null) return null;
