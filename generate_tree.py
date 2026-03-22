@@ -25,19 +25,77 @@ HEADER = {
     "subtitle": "Juan Miguel Perez &amp; Melissa Perez (née Zitt) &nbsp;·&nbsp; Updated March 2026",
 }
 
+# Each person is a dict with keys:
+#   id        – unique HTML id (required)
+#   name      – display name
+#   maiden    – maiden / alt name (optional)
+#   dob       – date of birth string (optional)
+#   note      – small italic note (optional)
+#   tag       – relationship label (optional)
+#   css       – extra CSS classes beyond "card" (optional, list)
+#   side      – "perez" | "zitt" | None  → adds perez-side / zitt-side class
+
 def person(id, name, maiden=None, dob=None, note=None, tag=None, css=None, side=None):
     return dict(id=id, name=name, maiden=maiden, dob=dob,
                 note=note, tag=tag, css=css or [], side=side)
 
+# ── Great-Grandparents ───────────────────────────────────────────
+
+GREAT_GRANDPARENTS = [
+    # Zoila's parents: Miguel Dalda + Ana Martinez (and Ana's siblings)
+    ("perez", [
+        person("miguel-dalda",    "Miguel Dalda",  dob="b. Unknown", tag="Great-Grandfather"),
+        person("ana-martinez-gg", "Ana Martinez",  dob="b. Unknown", tag="Great-Grandmother"),
+    ]),
+    ("perez", [
+        person("delia-martinez", "Delia Martinez",    dob="b. Unknown", tag="Grand-Aunt"),
+        person("felix-hermida",  "Felix Hermida",     dob="b. Unknown",
+               tag="Grand-Uncle-in-law", css=["in-law"]),
+    ]),
+    ("perez", [
+        person("rosa-martinez",     "Rosa Martinez",     dob="b. Unknown", tag="Grand-Aunt"),
+        person("guillermo-herrera", "Guillermo Herrera", dob="b. Unknown",
+               tag="Grand-Uncle-in-law", css=["in-law"]),
+    ]),
+    ("perez_single", person("ramon-martinez", "Ramon Martinez", dob="b. Unknown", tag="Grand-Uncle")),
+    # Miguel Dalda's sisters
+    ("perez_single", person("zoraida-dalda",     "Zoraida Dalda",     dob="b. Unknown", tag="Grand-Aunt")),
+    ("perez_single", person("maria-luisa-dalda", "Maria Luisa Dalda", dob="b. Unknown", tag="Grand-Aunt")),
+    # Evaristo's parents: Lucas Santana + Maria Rangel (and Lucas's sisters)
+    ("perez", [
+        person("lucas-santana", "Lucas Santana", dob="b. Unknown", tag="Great-Grandfather"),
+        person("maria-rangel",  "Maria Rangel",  dob="b. Unknown", tag="Great-Grandmother"),
+    ]),
+    ("perez_single", person("guillermina-santana", "Guillermina Santana", dob="b. Unknown", tag="Grand-Aunt")),
+    ("perez_single", person("ramona-santana",      "Ramona Santana",     dob="b. Unknown", tag="Grand-Aunt")),
+]
+
+# ── Grandparents (+ their siblings) ─────────────────────────────
+
 GRANDPARENTS = [
+    # Perez side
     ("perez", [
         person("gp-gonzalo", "Gonzalo Perez", dob="b. Unknown", tag="Grandfather"),
         person("gp-osiris",  "Osiris Perez",  maiden="née Ramos", dob="b. Unknown", tag="Grandmother"),
     ]),
+    # Santana/Dalda: Evaristo + Zolia + their siblings
     ("perez", [
         person("gp-evaristo", "Evaristo Santana", dob="b. Unknown", tag="Grandfather"),
         person("gp-zolia",    "Zolia Santana",    maiden="née Dalda", dob="b. Unknown", tag="Grandmother"),
     ]),
+    ("perez", [
+        person("ana-luisa-dalda", "Ana Luisa Dalda", dob="b. Unknown", tag="Grand-Aunt"),
+        person("manolo-fundora",  "Manolo Fundora",  dob="b. Unknown",
+               tag="Grand-Uncle-in-law", css=["in-law"]),
+    ]),
+    ("perez", [
+        person("gerardo-dalda", "Gerardo Dalda", dob="b. Unknown", tag="Grand-Uncle"),
+        person("elisa-gorrin",  "Elisa Gorrin",  dob="b. Unknown",
+               tag="Grand-Aunt-in-law", css=["in-law"]),
+    ]),
+    ("perez_single", person("juan-santana-bro", "Juan Santana",  dob="b. Unknown", tag="Grand-Uncle")),
+    ("perez_single", person("juana-santana",    "Juana Santana", dob="b. Unknown", tag="Grand-Aunt")),
+    # Zitt side
     ("zitt", [
         person("zp-gf", "Paternal Grandfather", maiden="Zitt family", dob="To be researched",
                tag="Grandfather", css=["unknown"]),
@@ -51,19 +109,25 @@ GRANDPARENTS = [
     ]),
 ]
 
+# ── Parents generation ────────────────────────────────────────────
+
 PARENTS = [
+    # Aunt + uncle (perez side)
     ("perez", [
         person("ana-osiris",  "Ana Osiris Martinez", maiden="née Perez", dob="b. Unknown",
                tag="Aunt (Paternal)", css=["cousin"]),
         person("antonio-sr",  "Antonio Martinez",   dob="b. Unknown", tag="Uncle", css=["cousin"]),
     ]),
+    # Juan's parents
     ("perez", [
         person("father", "Juan Gonzalo Perez", dob="b. June 11, 1955", tag="Father"),
         person("mother", "Zaida Perez", maiden="née Santana", dob="b. Sep 13, 1957", tag="Mother"),
     ]),
+    # Stepmother + Dayanna's father (singles, perez side)
     ("perez_single", person("olga", "Olga", dob="b. Unknown", tag="Stepmother", css=["unknown"])),
     ("perez_single", person("dayanna-father", "Unknown Father", dob="b. Unknown",
                             tag="Dayanna's Father", css=["unknown"])),
+    # Melissa's parents (zitt side)
     ("zitt", [
         person("dennis-zitt", "Dennis Herbert Zitt", dob="b. Apr 27, 1949",
                tag="Father-in-law", css=["zitt"]),
@@ -72,38 +136,40 @@ PARENTS = [
     ]),
 ]
 
+# ── Juan & Melissa's generation ───────────────────────────────────
+
 GEN3 = [
+    # Martinez cousins
     ("perez_single", person("antonio-jr", "Antonio Martinez", dob="b. Unknown",
                             tag="Cousin", css=["cousin"])),
     ("perez", [
-        person("ana-martinez",   "Ana Martinez",   maiden="now Ramirez", dob="b. Unknown",
+        person("ana-martinez",   "Ana Margarita Ramirez", maiden="née Martinez", dob="b. Unknown",
                tag="Cousin", css=["cousin"]),
         person("daniel-ramirez", "Daniel Ramirez", dob="b. Unknown",
                tag="Cousin-in-law", css=["cousin"]),
     ]),
-    ("perez", [
-        person("gonzalo",      "Gonzalo E. Perez",  dob="b. July 27, 1976", tag="Brother"),
-        person("maria-alfaro", "Maria Perez", maiden="née Alfaro", tag="Sister-in-law", css=["in-law"]),
-    ]),
+    # Gonzalo (single)
+    ("perez_single", person("gonzalo", "Gonzalo E. Perez", dob="b. July 27, 1976", tag="Brother")),
+    # THE COUPLE — no side filter (always visible)
     (None, [
         person("juan",    "Juan Miguel Perez", dob="b. Oct 28, 1980", tag="You",    css=["you"]),
         person("melissa", "Melissa Perez", maiden="née Zitt", dob="b. Mar 15, 1981",
                tag="Spouse", css=["spouse"]),
     ]),
+    # Daniel + Jennifer
     ("perez", [
         person("daniel",   "Daniel Orlando Perez", dob="b. June 23, 1982", tag="Brother"),
         person("jennifer", "Jennifer Perez", maiden="née Safanova",
                tag="Sister-in-law", css=["in-law"]),
     ]),
+    # Half-siblings
     ("perez_single", person("joanna",  "Joanna Marie Perez", dob="b. 2005", tag="Half-Sister",  css=["half"])),
     ("perez_single", person("dayanna", "Dayanna", maiden="Last name TBD",
                             note="Olga's daughter (diff. father)",
                             tag="Joanna's Half-Sister", css=["half"])),
-    ("zitt", [
-        person("deanna",       "Deanna Marie Lebet", maiden="née Zitt", dob="b. Aug 13, 1969",
-               tag="Sister-in-law", css=["zitt-sib"]),
-        person("john-lebet-sr","John Lebet", tag="Brother-in-law", css=["in-law"]),
-    ]),
+    # Zitt siblings
+    ("zitt_single", person("deanna", "Deanna Marie Lebet", maiden="née Zitt", dob="b. Aug 13, 1969",
+                           tag="Sister-in-law", css=["zitt-sib"])),
     ("zitt", [
         person("patricia",       "Patricia Ann Welton", maiden="née Zitt", dob="b. June 12, 1971",
                tag="Sister-in-law", css=["zitt-sib"]),
@@ -114,26 +180,99 @@ GEN3 = [
                            tag="Brother-in-law", css=["zitt-sib"])),
 ]
 
+# ── Children / next generation ────────────────────────────────────
+
 KIDS = [
+    # Ramirez 2nd cousins
     ("perez_single", person("melenia",   "Melenia Ramirez",    dob="b. Unknown", tag="2nd Cousin", css=["cousin"])),
     ("perez_single", person("alejandro", "Alejandro Ramirez",  dob="b. Unknown", tag="2nd Cousin", css=["cousin"])),
     ("perez_single", person("mya",       "Mya Ramirez",        dob="b. Unknown", tag="2nd Cousin", css=["cousin"])),
     ("perez_single", person("alexandria","Alexandria Ramirez",  dob="b. Unknown", tag="2nd Cousin", css=["cousin"])),
     ("perez_single", person("jamila",    "Jamila Ramirez", dob="b. Unknown",
                             note="Mother unknown", tag="2nd Cousin", css=["cousin"])),
-    (None, person("julian", "Julian Lucas Perez",  dob="b. Feb 4, 2011",  tag="Son",      css=["child-m"])),
-    (None, person("alexa",  "Alexa Santana Perez", dob="b. Feb 4, 2015",  tag="Daughter", css=["child-f"])),
-    (None, person("sophia", "Sophia Quinn Perez",  dob="b. Oct 4, 2022",  tag="Daughter", css=["child-f"])),
+    # Juan + Melissa's children — no side (always visible)
+    (None,           person("julian", "Julian Lucas Perez",  dob="b. Feb 4, 2011",  tag="Son",      css=["child-m"])),
+    (None,           person("alexa",  "Alexa Santana Perez", dob="b. Feb 4, 2015",  tag="Daughter", css=["child-f"])),
+    (None,           person("sophia", "Sophia Quinn Perez",  dob="b. Oct 4, 2022",  tag="Daughter", css=["child-f"])),
+    # Daniel + Jennifer's daughter (perez side)
     ("perez_single", person("sena", "Sena Sakura Perez", dob="b. April 2014",
                             tag="Niece", css=["child-f"])),
+    # Lebet children
     ("zitt_single",  person("john-lebet-jr", "John Lebet",    dob="b. Unknown", tag="Nephew",  css=["niece-m"])),
     ("zitt_single",  person("kevin-lebet",   "Kevin Lebet",   dob="b. Unknown", tag="Nephew",  css=["niece-m"])),
     ("zitt_single",  person("matthew-lebet", "Matthew Lebet", dob="b. Unknown", tag="Nephew",  css=["niece-m"])),
     ("zitt_single",  person("kaitlyn",       "Kaitlyn", maiden="Different father",
                             tag="Niece",  css=["niece-f"])),
+    # Welton children
     ("zitt_single",  person("stephanie-welton", "Stephanie Welton", dob="b. Unknown", tag="Niece",   css=["niece-f"])),
     ("zitt_single",  person("brian-welton",     "Brian Welton",     dob="b. Unknown", tag="Nephew",  css=["niece-m"])),
-]CSS = """
+]
+
+# ── Grandparent cousins (children of grandparent siblings + great-GP siblings) ──
+
+GP_COUSINS = [
+    # Children of Delia Martinez + Felix Hermida
+    ("perez_single", person("enerita-hermida", "Enerita Hermida", dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("elisa-hermida",   "Elisa Hermida",   dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("oreste-hermida",  "Oreste Hermida",  dob="b. Unknown", tag="Grand-Cousin")),
+    # Children of Rosa Martinez + Guillermo Herrera
+    ("perez_single", person("nilda-herrera", "Nilda Herrera", dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("daizy-herrera", "Daizy Herrera", dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("luis-herrera",  "Luis Herrera",  dob="b. Unknown", tag="Grand-Cousin")),
+    # Children of Maria Luisa Dalda
+    ("perez_single", person("maria-belen-dalda", "Maria Belen Dalda", dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("guilfredo-dalda",   "Guilfredo Dalda",   dob="b. Unknown", tag="Grand-Cousin")),
+    # Child of Ana Luisa Dalda + Manolo Fundora
+    ("perez_single", person("ana-herminia-fundora", "Ana Herminia Fundora", dob="b. Unknown",
+                             note="née Fundora", tag="Grand-Cousin")),
+    # Children of Gerardo Dalda + Elisa Gorrin
+    ("perez_single", person("belkys-dalda",  "Belkys Dalda",  dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("idalmis-dalda", "Idalmis Dalda", dob="b. Unknown", tag="Grand-Cousin")),
+    # Children of Juan Santana (Evaristo's brother)
+    ("perez_single", person("nancy-santana",   "Nancy Santana",    dob="b. Unknown", tag="Grand-Cousin")),
+    ("perez_single", person("juan-santana-jr", "Juan Santana Jr.", dob="b. Unknown", tag="Grand-Cousin")),
+]
+
+# ── SVG connector rules ───────────────────────────────────────────
+# Each rule is a dict:
+#   parents  – list of person ids forming the couple midpoint
+#   children – list of child person ids
+#   color    – CSS color string
+#   dash     – bool (dashed line)
+#   special  – "father-olga" | "olga-dayanna" (for offset connectors)
+
+CONNECTORS = [
+    dict(parents=["gp-gonzalo","gp-osiris"],   children=["ana-osiris","father"], color="C"),
+    dict(parents=["gp-evaristo","gp-zolia"],   children=["mother"],              color="C"),
+    dict(parents=["zp-gf","zp-gm"],            children=["dennis-zitt"],         color="BL", dash=True),
+    dict(parents=["coppola-gf","coppola-gm"],  children=["anna-zitt"],           color="BL"),
+    dict(parents=["father","mother"],           children=["gonzalo","juan","daniel"], color="C"),
+    dict(special="father-olga",                children=["joanna"],              color="GR", dash=True),
+    dict(special="olga-dayanna",               children=["dayanna"],             color="OR", dash=True),
+    dict(parents=["ana-osiris","antonio-sr"],  children=["antonio-jr","ana-martinez"], color="PU"),
+    dict(parents=["dennis-zitt","anna-zitt"],  children=["deanna","patricia","dennis-wayne","melissa"], color="BL"),
+    dict(parents=["ana-martinez","daniel-ramirez"], children=["melenia","alejandro","mya","alexandria"], color="PU"),
+    dict(special="ramirez-jamila",             children=["jamila"],              color="PU", dash=True),
+    dict(parents=["daniel","jennifer"],        children=["sena"],                color="C"),
+    dict(parents=["juan","melissa"],           children=["julian","alexa","sophia"], color="KB"),
+    dict(parents=["deanna"],                   children=["john-lebet-jr","kevin-lebet","matthew-lebet"], color="BL"),
+    dict(parents=["patricia","michael-welton"],children=["stephanie-welton","brian-welton"], color="BL"),
+    dict(special="patricia-kaitlyn",           children=["kaitlyn"],             color="BL", dash=True),
+    dict(parents=["miguel-dalda","ana-martinez-gg"],   children=["ana-luisa-dalda","gp-zolia","gerardo-dalda"], color="C"),
+    dict(parents=["lucas-santana","maria-rangel"],      children=["gp-evaristo","juan-santana-bro","juana-santana"], color="C"),
+    dict(parents=["delia-martinez","felix-hermida"],    children=["enerita-hermida","elisa-hermida","oreste-hermida"], color="C"),
+    dict(parents=["rosa-martinez","guillermo-herrera"], children=["nilda-herrera","daizy-herrera","luis-herrera"], color="C"),
+    dict(parents=["maria-luisa-dalda"],                 children=["maria-belen-dalda","guilfredo-dalda"], color="C"),
+    dict(parents=["ana-luisa-dalda","manolo-fundora"],  children=["ana-herminia-fundora"], color="C"),
+    dict(parents=["gerardo-dalda","elisa-gorrin"],      children=["belkys-dalda","idalmis-dalda"], color="C"),
+    dict(parents=["juan-santana-bro"],                  children=["nancy-santana","juan-santana-jr"], color="C"),
+]
+
+# ══════════════════════════════════════════════════════════════════
+#  HTML RENDERING  —  no need to edit below this line
+# ══════════════════════════════════════════════════════════════════
+
+CSS = """
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -169,7 +308,7 @@ KIDS = [
 
     #tree {
       position: relative;
-      min-width: 3800px;
+      min-width: 5500px;
       padding: 0 10px 20px;
     }
 
@@ -250,7 +389,8 @@ KIDS = [
     .banner-row { display: flex; justify-content: space-between; align-items: center;
                   margin-bottom: 5px; padding: 0 30px; }
     .side-banner { font-size: 0.7em; font-weight: bold; letter-spacing: 1px;
-                   padding: 4px 12px; border-radius: 20px; display: inline-block; }.side-banner.perez { background: #f8ece0; color: #7d4e1e; border: 1px solid #d4b896; }
+                   padding: 4px 12px; border-radius: 20px; display: inline-block; }
+    .side-banner.perez { background: #f8ece0; color: #7d4e1e; border: 1px solid #d4b896; }
     .side-banner.zitt  { background: #e8f0fb; color: #1a4a7a; border: 1px solid #90b8d8; }
 
     #legend { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
@@ -273,6 +413,7 @@ function setMode(mode) {
   setTimeout(draw, 120);
 }
 
+// ── Connector helpers ──
 function rel(id) {
   const el = document.getElementById(id);
   if (!el || el.offsetParent === null) return null;
@@ -314,24 +455,30 @@ function draw() {
   const C='#c4a06a', BL='#2471a3', GR='#1e8449', OR='#d35400';
   const PU='#6c3483', KB='#2980b9';
 
+  // Gonzalo Perez + Osiris → father + ana-osiris
   const gpG=rel('gp-gonzalo'),gpO=rel('gp-osiris'),father=rel('father'),anaO=rel('ana-osiris');
   if(gpG&&gpO&&father&&anaO) tee(svg,(gpG.cx+gpO.cx)/2,Math.max(gpG.bottom,gpO.bottom),[anaO,father],C);
 
+  // Evaristo + Zolia → mother
   const gpE=rel('gp-evaristo'),gpZ=rel('gp-zolia'),mother=rel('mother');
   if(gpE&&gpZ&&mother) tee(svg,(gpE.cx+gpZ.cx)/2,Math.max(gpE.bottom,gpZ.bottom),[mother],C);
 
+  // Zitt GPs → Dennis Zitt
   const zpgf=rel('zp-gf'),zpgm=rel('zp-gm'),dZitt=rel('dennis-zitt');
   if(zpgf&&zpgm&&dZitt) tee(svg,(zpgf.cx+zpgm.cx)/2,Math.max(zpgf.bottom,zpgm.bottom),[dZitt],BL,true);
 
+  // Coppola GPs → Anna Zitt
   const cgf=rel('coppola-gf'),cgm=rel('coppola-gm'),aZitt=rel('anna-zitt');
   if(cgf&&cgm&&aZitt) tee(svg,(cgf.cx+cgm.cx)/2,Math.max(cgf.bottom,cgm.bottom),[aZitt],BL);
 
+  // Father + Mother → Gonzalo, Juan, Daniel
   const gonzalo=rel('gonzalo'),juan=rel('juan'),daniel=rel('daniel');
   if(father&&mother&&gonzalo&&juan&&daniel)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[gonzalo,juan,daniel],C);
   else if(father&&mother&&juan)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[juan],C);
 
+  // Father + Olga → Joanna
   const olga=rel('olga'),joanna=rel('joanna');
   if(father&&olga&&joanna){
     const ux=(father.cx+olga.cx)/2,fBy=father.bottom;
@@ -341,6 +488,7 @@ function draw() {
     tee(svg,ux,olga.bottom,[joanna],GR,true);
   }
 
+  // Olga + Unknown → Dayanna
   const dayF=rel('dayanna-father'),dayanna=rel('dayanna');
   if(olga&&dayF&&dayanna){
     const ux=(olga.cx+dayF.cx)/2,oBy=olga.bottom;
@@ -350,17 +498,24 @@ function draw() {
     tee(svg,ux,Math.max(olga.bottom,dayF.bottom),[dayanna],OR,true);
   }
 
+  // Ana Osiris + Antonio → cousins
   const antJr=rel('antonio-jr'),anaMtz=rel('ana-martinez'),antSr=rel('antonio-sr');
   if(anaO&&antSr&&antJr&&anaMtz)
     tee(svg,(anaO.right+antSr.left)/2,Math.max(anaO.bottom,antSr.bottom),[antJr,anaMtz],PU);
 
+  // Dennis Zitt + Anna → Deanna, Patricia, Dennis Wayne, Melissa
   const deanna=rel('deanna'),patricia=rel('patricia'),dWayne=rel('dennis-wayne'),melissa=rel('melissa');
   if(dZitt&&aZitt&&melissa){
-    const kids=[deanna,patricia,dWayne,melissa].filter(Boolean); tee(svg,(dZitt.right+aZitt.left)/2,Math.max(dZitt.bottom,aZitt.bottom),kids,BL);
-  }  const dRam=rel('daniel-ramirez'),anaMart=rel('ana-martinez');
+    const kids=[deanna,patricia,dWayne,melissa].filter(Boolean);
+    tee(svg,(dZitt.right+aZitt.left)/2,Math.max(dZitt.bottom,aZitt.bottom),kids,BL);
+  }
+
+  // Ana Martinez + Daniel Ramirez → Melenia, Alejandro, Mya, Alexandria
+  const dRam=rel('daniel-ramirez'),anaMart=rel('ana-martinez');
   const mel=rel('melenia'),ale=rel('alejandro'),mya2=rel('mya'),alex=rel('alexandria');
   if(anaMart&&dRam&&mel) tee(svg,(anaMart.right+dRam.left)/2,Math.max(anaMart.bottom,dRam.bottom),[mel,ale,mya2,alex].filter(Boolean),PU);
 
+  // Daniel Ramirez → Jamila (dashed)
   const jamila=rel('jamila');
   if(dRam&&jamila){
     const midY=dRam.bottom+(jamila.top-dRam.bottom)*0.5;
@@ -369,19 +524,24 @@ function draw() {
     ln(svg,jamila.cx,midY,jamila.cx,jamila.top,PU,true);
   }
 
+  // Daniel + Jennifer → Sena
   const danP=rel('daniel'),jennifer=rel('jennifer'),sena=rel('sena');
   if(danP&&jennifer&&sena) tee(svg,(danP.right+jennifer.left)/2,Math.max(danP.bottom,jennifer.bottom),[sena],C);
 
+  // Juan + Melissa → Julian, Alexa, Sophia
   const juanR=rel('juan'),melissaR=rel('melissa'),jul=rel('julian'),alx=rel('alexa'),soph=rel('sophia');
   if(juanR&&melissaR&&jul)
     tee(svg,(juanR.right+melissaR.left)/2,Math.max(juanR.bottom,melissaR.bottom),[jul,alx,soph].filter(Boolean),KB);
 
-  const jLSr=rel('john-lebet-sr'),jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
-  if(deanna&&jLSr&&jJr) tee(svg,(deanna.right+jLSr.left)/2,Math.max(deanna.bottom,jLSr.bottom),[jJr,kev,matt].filter(Boolean),BL);
+  // Deanna → John Jr., Kevin, Matthew
+  const jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
+  if(deanna&&jJr) tee(svg,deanna.cx,deanna.bottom,[jJr,kev,matt].filter(Boolean),BL);
 
+  // Patricia + Michael Welton → Stephanie, Brian
   const mWelton=rel('michael-welton'),steph=rel('stephanie-welton'),brian=rel('brian-welton');
   if(patricia&&mWelton&&steph) tee(svg,(patricia.right+mWelton.left)/2,Math.max(patricia.bottom,mWelton.bottom),[steph,brian].filter(Boolean),BL);
 
+  // Patricia → Kaitlyn (dashed, diff father)
   const kaitlyn=rel('kaitlyn');
   if(patricia&&kaitlyn){
     const midY=patricia.bottom+(kaitlyn.top-patricia.bottom)*0.5;
@@ -389,6 +549,42 @@ function draw() {
     ln(svg,patricia.cx,midY,kaitlyn.cx,midY,BL,true);
     ln(svg,kaitlyn.cx,midY,kaitlyn.cx,kaitlyn.top,BL,true);
   }
+
+  // Miguel Dalda + Ana Martinez → Zoila's generation
+  const migD=rel('miguel-dalda'),anaMG=rel('ana-martinez-gg'),anaLD=rel('ana-luisa-dalda'),gerD=rel('gerardo-dalda');
+  const zoliGP=rel('gp-zolia');
+  if(migD&&anaMG&&zoliGP) tee(svg,(migD.right+anaMG.left)/2,Math.max(migD.bottom,anaMG.bottom),[anaLD,zoliGP,gerD].filter(Boolean),C);
+
+  // Lucas Santana + Maria Rangel → Evaristo's generation
+  const lucS=rel('lucas-santana'),marR=rel('maria-rangel'),evGP=rel('gp-evaristo');
+  const juanSB=rel('juan-santana-bro'),juanaS=rel('juana-santana');
+  if(lucS&&marR&&evGP) tee(svg,(lucS.right+marR.left)/2,Math.max(lucS.bottom,marR.bottom),[evGP,juanSB,juanaS].filter(Boolean),C);
+
+  // Delia + Felix Hermida → Enerita, Elisa, Oreste
+  const delM=rel('delia-martinez'),felH=rel('felix-hermida');
+  const enH=rel('enerita-hermida'),elH=rel('elisa-hermida'),orH=rel('oreste-hermida');
+  if(delM&&felH&&enH) tee(svg,(delM.right+felH.left)/2,Math.max(delM.bottom,felH.bottom),[enH,elH,orH].filter(Boolean),C);
+
+  // Rosa + Guillermo Herrera → Nilda, Daizy, Luis
+  const rosaM=rel('rosa-martinez'),guilH=rel('guillermo-herrera');
+  const nildH=rel('nilda-herrera'),daizH=rel('daizy-herrera'),luisH=rel('luis-herrera');
+  if(rosaM&&guilH&&nildH) tee(svg,(rosaM.right+guilH.left)/2,Math.max(rosaM.bottom,guilH.bottom),[nildH,daizH,luisH].filter(Boolean),C);
+
+  // Maria Luisa Dalda → Maria Belen, Guilfredo
+  const mlD=rel('maria-luisa-dalda'),mbD=rel('maria-belen-dalda'),gfD=rel('guilfredo-dalda');
+  if(mlD&&mbD) tee(svg,mlD.cx,mlD.bottom,[mbD,gfD].filter(Boolean),C);
+
+  // Ana Luisa + Manolo Fundora → Ana Herminia
+  const manoF=rel('manolo-fundora'),anaHF=rel('ana-herminia-fundora');
+  if(anaLD&&manoF&&anaHF) tee(svg,(anaLD.right+manoF.left)/2,Math.max(anaLD.bottom,manoF.bottom),[anaHF],C);
+
+  // Gerardo + Elisa Gorrin → Belkys, Idalmis
+  const elisaG=rel('elisa-gorrin'),belkD=rel('belkys-dalda'),idalD=rel('idalmis-dalda');
+  if(gerD&&elisaG&&belkD) tee(svg,(gerD.right+elisaG.left)/2,Math.max(gerD.bottom,elisaG.bottom),[belkD,idalD].filter(Boolean),C);
+
+  // Juan Santana (Evaristo's brother) → Nancy, Juan Jr.
+  const juanSBr=rel('juan-santana-bro'),nancS=rel('nancy-santana'),juanSJr=rel('juan-santana-jr');
+  if(juanSBr&&nancS) tee(svg,juanSBr.cx,juanSBr.bottom,[nancS,juanSJr].filter(Boolean),C);
 }
 
 window.addEventListener('load', draw);
@@ -396,16 +592,16 @@ window.addEventListener('resize', draw);
 """
 
 LEGEND_ITEMS = [
-    ("#c0392b", "",        "You"),
-    ("#d4b896", "",        "Perez family"),
-    ("#7d3c98", "dashed",  "Spouse"),
-    ("#6c3483", "#fdf2ff", "Cousin branch"),
-    ("#2471a3", "#f0f6fc", "Zitt family"),
-    ("#1e8449", "dashed",  "Half-sibling"),
-    ("#2980b9", "",        "Son / Nephew"),
-    ("#c0397b", "",        "Daughter / Niece"),
-    ("#bbb",    "#f7f7f7", "Divorced"),
-    ("#b0b0b0", "dotted",  "To research"),
+    ("#c0392b", "",       "You"),
+    ("#d4b896", "",       "Perez family"),
+    ("#7d3c98", "dashed", "Spouse"),
+    ("#6c3483", "#fdf2ff","Cousin branch"),
+    ("#2471a3", "#f0f6fc","Zitt family"),
+    ("#1e8449", "dashed", "Half-sibling"),
+    ("#2980b9", "",       "Son / Nephew"),
+    ("#c0397b", "",       "Daughter / Niece"),
+    ("#bbb",    "#f7f7f7","Divorced"),
+    ("#b0b0b0", "dotted", "To research"),
 ]
 
 
@@ -444,8 +640,12 @@ def render_row(row_data, label, row_id):
     last_side = None
     for entry in row_data:
         kind, data = entry
+        # Insert separators between sides
         if kind in ("zitt", "zitt_single") and last_side in ("perez", "perez_single"):
             lines.append('    <div class="fam-gap"></div>')
+        elif kind in ("perez", "perez_single") and last_side == "zitt":
+            pass  # shouldn't happen normally
+
         if kind in ("perez", "zitt") or (kind is None and isinstance(data, list)):
             side = "perez" if kind == "perez" else ("zitt" if kind == "zitt" else None)
             lines.append(render_couple(data, side=side))
@@ -476,19 +676,18 @@ def render_legend():
 
 
 def generate_html():
-    grandparents_html = render_row(
-        [(side, list(pair)) for side, pair in GRANDPARENTS],
-        "Grandparents", "row-gp"
-    )
-    parents_html = render_row(PARENTS, "Parents &amp; Aunt / Uncle Generation", "row-parents")
-    gen3_html    = render_row(GEN3,    "Juan &amp; Melissa's Generation",        "row-gen3")
-    kids_html    = render_row(KIDS,    "Children &amp; Next Generation",         "row-kids")
+    gg_html          = render_row(GREAT_GRANDPARENTS, "Great-Grandparents &amp; Their Siblings", "row-gg")
+    grandparents_html = render_row(GRANDPARENTS, "Grandparents &amp; Their Siblings", "row-gp")
+    gp_cousins_html  = render_row(GP_COUSINS,   "Grandparent Generation Cousins",    "row-gp-cousins")
+    parents_html     = render_row(PARENTS, "Parents &amp; Aunt / Uncle Generation",  "row-parents")
+    gen3_html        = render_row(GEN3,    "Juan &amp; Melissa's Generation",         "row-gen3")
+    kids_html        = render_row(KIDS,    "Children &amp; Next Generation",          "row-kids")
 
     return f"""<!DOCTYPE html>
-<html lang=\"en\">
+<html lang="en">
 <head>
-  <meta charset=\"UTF-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{HEADER['title']}</title>
   <style>
 {CSS}
@@ -501,23 +700,27 @@ def generate_html():
   <p>{HEADER['subtitle']}</p>
 </header>
 
-<div class=\"toggle-bar\">
-  <button id=\"btn-all\"   onclick=\"setMode('all')\"   class=\"active\">🌳 Full Family Tree</button>
-  <button id=\"btn-perez\" onclick=\"setMode('perez')\">🏠 Perez Family Only</button>
-  <button id=\"btn-zitt\"  onclick=\"setMode('zitt')\"  class=\"zitt-btn\">🏠 Zitt · Coppola Family Only</button>
+<div class="toggle-bar">
+  <button id="btn-all"   onclick="setMode('all')"   class="active">🌳 Full Family Tree</button>
+  <button id="btn-perez" onclick="setMode('perez')">🏠 Perez Family Only</button>
+  <button id="btn-zitt"  onclick="setMode('zitt')"  class="zitt-btn">🏠 Zitt · Coppola Family Only</button>
 </div>
 
-<div class=\"banner-row\">
-  <span class=\"side-banner perez perez-side\">⬅ Perez · Santana Family</span>
-  <span style=\"font-size:0.72em;color:#aaa;font-style:italic;\">← families join at Juan &amp; Melissa →</span>
-  <span class=\"side-banner zitt zitt-side\">Zitt · Coppola Family ➡</span>
+<div class="banner-row">
+  <span class="side-banner perez perez-side">⬅ Perez · Santana Family</span>
+  <span style="font-size:0.72em;color:#aaa;font-style:italic;">← families join at Juan &amp; Melissa →</span>
+  <span class="side-banner zitt zitt-side">Zitt · Coppola Family ➡</span>
 </div>
 
-<div id=\"tree-scroll\">
-<div id=\"tree\">
-  <svg id=\"svg-lines\"></svg>
+<div id="tree-scroll">
+<div id="tree">
+  <svg id="svg-lines"></svg>
+
+{gg_html}
 
 {grandparents_html}
+
+{gp_cousins_html}
 
 {parents_html}
 
