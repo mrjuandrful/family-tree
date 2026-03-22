@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perez · Zitt Family Tree</title>
   <style>
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -40,7 +41,7 @@
 
     #tree {
       position: relative;
-      min-width: 3800px;
+      min-width: 5500px;
       padding: 0 10px 20px;
     }
 
@@ -129,6 +130,7 @@
               margin-top: 10px; padding: 0 20px; }
     .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.72em; color: #555; }
     .legend-box  { width: 18px; height: 11px; border-radius: 3px; border: 2px solid; }
+
   </style>
 </head>
 <body>
@@ -154,9 +156,89 @@
 <div id="tree">
   <svg id="svg-lines"></svg>
 
-  <p class="gen-label">Grandparents</p>
-  <div class="gen-row" id="row-gp">
+  <p class="gen-label">Great-Grandparents &amp; Their Siblings</p>
+  <div class="gen-row" id="row-gg">
+    <div class="couple perez-side">
+      <div class="card" id="miguel-dalda">
+        <div class="name">Miguel Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Great-Grandfather</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card" id="ana-martinez-gg">
+        <div class="name">Ana Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Great-Grandmother</span>
+      </div>
+    </div>
+    <div class="couple perez-side">
+      <div class="card" id="delia-martinez">
+        <div class="name">Delia Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="felix-hermida">
+        <div class="name">Felix Hermida</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle-in-law</span>
+      </div>
+    </div>
+    <div class="couple perez-side">
+      <div class="card" id="rosa-martinez">
+        <div class="name">Rosa Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="guillermo-herrera">
+        <div class="name">Guillermo Herrera</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle-in-law</span>
+      </div>
+    </div>
+      <div class="card perez-side" id="ramon-martinez">
+        <div class="name">Ramon Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle</span>
+      </div>
+      <div class="card perez-side" id="zoraida-dalda">
+        <div class="name">Zoraida Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+      <div class="card perez-side" id="maria-luisa-dalda">
+        <div class="name">Maria Luisa Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+    <div class="couple perez-side">
+      <div class="card" id="lucas-santana">
+        <div class="name">Lucas Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Great-Grandfather</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card" id="maria-rangel">
+        <div class="name">Maria Rangel</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Great-Grandmother</span>
+      </div>
+    </div>
+      <div class="card perez-side" id="guillermina-santana">
+        <div class="name">Guillermina Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+      <div class="card perez-side" id="ramona-santana">
+        <div class="name">Ramona Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+  </div>
 
+  <p class="gen-label">Grandparents &amp; Their Siblings</p>
+  <div class="gen-row" id="row-gp">
     <div class="couple perez-side">
       <div class="card" id="gp-gonzalo">
         <div class="name">Gonzalo Perez</div>
@@ -171,9 +253,6 @@
         <span class="tag">Grandmother</span>
       </div>
     </div>
-
-    <div class="v-sep perez-side"></div>
-
     <div class="couple perez-side">
       <div class="card" id="gp-evaristo">
         <div class="name">Evaristo Santana</div>
@@ -188,9 +267,43 @@
         <span class="tag">Grandmother</span>
       </div>
     </div>
-
+    <div class="couple perez-side">
+      <div class="card" id="ana-luisa-dalda">
+        <div class="name">Ana Luisa Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="manolo-fundora">
+        <div class="name">Manolo Fundora</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle-in-law</span>
+      </div>
+    </div>
+    <div class="couple perez-side">
+      <div class="card" id="gerardo-dalda">
+        <div class="name">Gerardo Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle</span>
+      </div>
+      <span class="heart">♥</span>
+      <div class="card in-law" id="elisa-gorrin">
+        <div class="name">Elisa Gorrin</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt-in-law</span>
+      </div>
+    </div>
+      <div class="card perez-side" id="juan-santana-bro">
+        <div class="name">Juan Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Uncle</span>
+      </div>
+      <div class="card perez-side" id="juana-santana">
+        <div class="name">Juana Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Aunt</span>
+      </div>
     <div class="fam-gap"></div>
-
     <div class="couple zitt-side">
       <div class="card unknown" id="zp-gf">
         <div class="name">Paternal Grandfather</div>
@@ -198,7 +311,7 @@
         <div class="dob">To be researched</div>
         <span class="tag">Grandfather</span>
       </div>
-      <span class="heart" style="color:#bbb;">♥</span>
+      <span class="heart">♥</span>
       <div class="card unknown" id="zp-gm">
         <div class="name">Paternal Grandmother</div>
         <div class="maiden">Zitt family</div>
@@ -206,9 +319,6 @@
         <span class="tag">Grandmother</span>
       </div>
     </div>
-
-    <div class="v-sep zitt-side"></div>
-
     <div class="couple zitt-side">
       <div class="card zitt" id="coppola-gf">
         <div class="name">Louis Joseph Coppola</div>
@@ -223,13 +333,80 @@
         <span class="tag">Grandmother</span>
       </div>
     </div>
-
   </div>
 
+  <p class="gen-label">Grandparent Generation Cousins</p>
+  <div class="gen-row" id="row-gp-cousins">
+      <div class="card perez-side" id="enerita-hermida">
+        <div class="name">Enerita Hermida</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="elisa-hermida">
+        <div class="name">Elisa Hermida</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="oreste-hermida">
+        <div class="name">Oreste Hermida</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="nilda-herrera">
+        <div class="name">Nilda Herrera</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="daizy-herrera">
+        <div class="name">Daizy Herrera</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="luis-herrera">
+        <div class="name">Luis Herrera</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="maria-belen-dalda">
+        <div class="name">Maria Belen Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="guilfredo-dalda">
+        <div class="name">Guilfredo Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="ana-herminia-fundora">
+        <div class="name">Ana Herminia Fundora</div>
+        <div class="dob">b. Unknown</div>
+        <div class="note">née Fundora</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="belkys-dalda">
+        <div class="name">Belkys Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="idalmis-dalda">
+        <div class="name">Idalmis Dalda</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="nancy-santana">
+        <div class="name">Nancy Santana</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+      <div class="card perez-side" id="juan-santana-jr">
+        <div class="name">Juan Santana Jr.</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Grand-Cousin</span>
+      </div>
+  </div>
 
   <p class="gen-label">Parents &amp; Aunt / Uncle Generation</p>
   <div class="gen-row" id="row-parents">
-
     <div class="couple perez-side">
       <div class="card cousin" id="ana-osiris">
         <div class="name">Ana Osiris Martinez</div>
@@ -244,9 +421,6 @@
         <span class="tag">Uncle</span>
       </div>
     </div>
-
-    <div class="v-sep perez-side"></div>
-
     <div class="couple perez-side">
       <div class="card" id="father">
         <div class="name">Juan Gonzalo Perez</div>
@@ -261,23 +435,17 @@
         <span class="tag">Mother</span>
       </div>
     </div>
-
-    <div class="v-sep perez-side"></div>
-
-    <div class="card unknown perez-side" id="olga">
-      <div class="name">Olga</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Stepmother</span>
-    </div>
-
-    <div class="card unknown perez-side" id="dayanna-father">
-      <div class="name">Unknown Father</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Dayanna's Father</span>
-    </div>
-
+      <div class="card unknown perez-side" id="olga">
+        <div class="name">Olga</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Stepmother</span>
+      </div>
+      <div class="card unknown perez-side" id="dayanna-father">
+        <div class="name">Unknown Father</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Dayanna's Father</span>
+      </div>
     <div class="fam-gap"></div>
-
     <div class="couple zitt-side">
       <div class="card zitt" id="dennis-zitt">
         <div class="name">Dennis Herbert Zitt</div>
@@ -292,23 +460,19 @@
         <span class="tag">Mother-in-law</span>
       </div>
     </div>
-
   </div>
-
 
   <p class="gen-label">Juan &amp; Melissa's Generation</p>
   <div class="gen-row" id="row-gen3">
-
-    <div class="card cousin perez-side" id="antonio-jr">
-      <div class="name">Antonio Martinez</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Cousin</span>
-    </div>
-
+      <div class="card cousin perez-side" id="antonio-jr">
+        <div class="name">Antonio Martinez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Cousin</span>
+      </div>
     <div class="couple perez-side">
       <div class="card cousin" id="ana-martinez">
-        <div class="name">Ana Martinez</div>
-        <div class="maiden">now Ramirez</div>
+        <div class="name">Ana Margarita Ramirez</div>
+        <div class="maiden">née Martinez</div>
         <div class="dob">b. Unknown</div>
         <span class="tag">Cousin</span>
       </div>
@@ -319,24 +483,12 @@
         <span class="tag">Cousin-in-law</span>
       </div>
     </div>
-
-    <div class="v-sep perez-side"></div>
-
-    <div class="couple perez-side">
-      <div class="card" id="gonzalo">
+      <div class="card perez-side" id="gonzalo">
         <div class="name">Gonzalo E. Perez</div>
         <div class="dob">b. July 27, 1976</div>
         <span class="tag">Brother</span>
       </div>
-      <span class="heart">♥</span>
-      <div class="card in-law" id="maria-alfaro">
-        <div class="name">Maria Perez</div>
-        <div class="maiden">née Alfaro</div>
-        <span class="tag">Sister-in-law</span>
-      </div>
-    </div>
-
-    <div class="couple" id="main-couple">
+    <div class="couple">
       <div class="card you" id="juan">
         <div class="name">Juan Miguel Perez</div>
         <div class="dob">b. Oct 28, 1980</div>
@@ -350,7 +502,6 @@
         <span class="tag">Spouse</span>
       </div>
     </div>
-
     <div class="couple perez-side">
       <div class="card" id="daniel">
         <div class="name">Daniel Orlando Perez</div>
@@ -364,40 +515,24 @@
         <span class="tag">Sister-in-law</span>
       </div>
     </div>
-
-    <div class="v-sep perez-side"></div>
-
-    <!-- Half-siblings -->
-    <div class="card half perez-side" id="joanna">
-      <div class="name">Joanna Marie Perez</div>
-      <div class="dob">b. 2005</div>
-      <span class="tag">Half-Sister</span>
-    </div>
-
-    <div class="card half perez-side" id="dayanna">
-      <div class="name">Dayanna</div>
-      <div class="maiden">Last name TBD</div>
-      <div class="note">Olga's daughter (diff. father)</div>
-      <span class="tag">Joanna's Half-Sister</span>
-    </div>
-
+      <div class="card half perez-side" id="joanna">
+        <div class="name">Joanna Marie Perez</div>
+        <div class="dob">b. 2005</div>
+        <span class="tag">Half-Sister</span>
+      </div>
+      <div class="card half perez-side" id="dayanna">
+        <div class="name">Dayanna</div>
+        <div class="maiden">Last name TBD</div>
+        <div class="note">Olga's daughter (diff. father)</div>
+        <span class="tag">Joanna's Half-Sister</span>
+      </div>
     <div class="fam-gap"></div>
-
-    <!-- Zitt siblings -->
-    <div class="couple zitt-side">
-      <div class="card zitt-sib" id="deanna">
+      <div class="card zitt-sib zitt-side" id="deanna">
         <div class="name">Deanna Marie Lebet</div>
         <div class="maiden">née Zitt</div>
         <div class="dob">b. Aug 13, 1969</div>
         <span class="tag">Sister-in-law</span>
       </div>
-      <span class="heart">♥</span>
-      <div class="card in-law" id="john-lebet-sr">
-        <div class="name">John Lebet</div>
-        <span class="tag">Brother-in-law</span>
-      </div>
-    </div>
-
     <div class="couple zitt-side">
       <div class="card zitt-sib" id="patricia">
         <div class="name">Patricia Ann Welton</div>
@@ -411,118 +546,93 @@
         <span class="tag">Brother-in-law</span>
       </div>
     </div>
-
-    <div class="card zitt-sib" id="dennis-wayne">
-      <div class="name">Dennis Wayne Zitt</div>
-      <div class="dob">b. June 14, 1974</div>
-      <div class="note">Divorced · No children</div>
-      <span class="tag">Brother-in-law</span>
-    </div>
-
+      <div class="card zitt-sib zitt-side" id="dennis-wayne">
+        <div class="name">Dennis Wayne Zitt</div>
+        <div class="dob">b. June 14, 1974</div>
+        <div class="note">Divorced · No children</div>
+        <span class="tag">Brother-in-law</span>
+      </div>
   </div>
-
 
   <p class="gen-label">Children &amp; Next Generation</p>
   <div class="gen-row" id="row-kids">
-
-    <!-- Ramirez cousins' children -->
-    <div class="card cousin perez-side" id="melenia">
-      <div class="name">Melenia Ramirez</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">2nd Cousin</span>
-    </div>
-    <div class="card cousin perez-side" id="alejandro">
-      <div class="name">Alejandro Ramirez</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">2nd Cousin</span>
-    </div>
-    <div class="card cousin perez-side" id="mya">
-      <div class="name">Mya Ramirez</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">2nd Cousin</span>
-    </div>
-    <div class="card cousin perez-side" id="alexandria">
-      <div class="name">Alexandria Ramirez</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">2nd Cousin</span>
-    </div>
-
-    <div class="v-sep perez-side"></div>
-
-    <div class="card cousin perez-side" id="jamila">
-      <div class="name">Jamila Ramirez</div>
-      <div class="dob">b. Unknown</div>
-      <div class="note">Mother unknown</div>
-      <span class="tag">2nd Cousin</span>
-    </div>
-
-    <div class="v-sep perez-side"></div>
-
-    <!-- Juan + Melissa's children — always visible -->
-    <div class="card child-m" id="julian">
-      <div class="name">Julian Lucas Perez</div>
-      <div class="dob">b. Feb 4, 2011</div>
-      <span class="tag">Son</span>
-    </div>
-    <div class="card child-f" id="alexa">
-      <div class="name">Alexa Santana Perez</div>
-      <div class="dob">b. Feb 4, 2015</div>
-      <span class="tag">Daughter</span>
-    </div>
-    <div class="card child-f" id="sophia">
-      <div class="name">Sophia Quinn Perez</div>
-      <div class="dob">b. Oct 4, 2022</div>
-      <span class="tag">Daughter</span>
-    </div>
-
-    <!-- Daniel + Jennifer's daughter -->
-    <div class="v-sep perez-side"></div>
-    <div class="card child-f perez-side" id="sena">
-      <div class="name">Sena Sakura Perez</div>
-      <div class="dob">b. April 2014</div>
-      <span class="tag">Niece</span>
-    </div>
-
+      <div class="card cousin perez-side" id="melenia">
+        <div class="name">Melenia Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">2nd Cousin</span>
+      </div>
+      <div class="card cousin perez-side" id="alejandro">
+        <div class="name">Alejandro Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">2nd Cousin</span>
+      </div>
+      <div class="card cousin perez-side" id="mya">
+        <div class="name">Mya Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">2nd Cousin</span>
+      </div>
+      <div class="card cousin perez-side" id="alexandria">
+        <div class="name">Alexandria Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">2nd Cousin</span>
+      </div>
+      <div class="card cousin perez-side" id="jamila">
+        <div class="name">Jamila Ramirez</div>
+        <div class="dob">b. Unknown</div>
+        <div class="note">Mother unknown</div>
+        <span class="tag">2nd Cousin</span>
+      </div>
+      <div class="card child-m" id="julian">
+        <div class="name">Julian Lucas Perez</div>
+        <div class="dob">b. Feb 4, 2011</div>
+        <span class="tag">Son</span>
+      </div>
+      <div class="card child-f" id="alexa">
+        <div class="name">Alexa Santana Perez</div>
+        <div class="dob">b. Feb 4, 2015</div>
+        <span class="tag">Daughter</span>
+      </div>
+      <div class="card child-f" id="sophia">
+        <div class="name">Sophia Quinn Perez</div>
+        <div class="dob">b. Oct 4, 2022</div>
+        <span class="tag">Daughter</span>
+      </div>
+      <div class="card child-f perez-side" id="sena">
+        <div class="name">Sena Sakura Perez</div>
+        <div class="dob">b. April 2014</div>
+        <span class="tag">Niece</span>
+      </div>
     <div class="fam-gap"></div>
-
-    <!-- Lebet children -->
-    <div class="card niece-m zitt-side" id="john-lebet-jr">
-      <div class="name">John Lebet</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Nephew</span>
-    </div>
-    <div class="card niece-m zitt-side" id="kevin-lebet">
-      <div class="name">Kevin Lebet</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Nephew</span>
-    </div>
-    <div class="card niece-m zitt-side" id="matthew-lebet">
-      <div class="name">Matthew Lebet</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Nephew</span>
-    </div>
-
-    <div class="v-sep zitt-side"></div>
-
-    <!-- Kaitlyn (different father) -->
-    <div class="card niece-f zitt-side" id="kaitlyn">
-      <div class="name">Kaitlyn</div>
-      <div class="maiden">Different father</div>
-      <span class="tag">Niece</span>
-    </div>
-
-    <!-- Welton children -->
-    <div class="card niece-f zitt-side" id="stephanie-welton">
-      <div class="name">Stephanie Welton</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Niece</span>
-    </div>
-    <div class="card niece-m zitt-side" id="brian-welton">
-      <div class="name">Brian Welton</div>
-      <div class="dob">b. Unknown</div>
-      <span class="tag">Nephew</span>
-    </div>
-
+      <div class="card niece-m zitt-side" id="john-lebet-jr">
+        <div class="name">John Lebet</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Nephew</span>
+      </div>
+      <div class="card niece-m zitt-side" id="kevin-lebet">
+        <div class="name">Kevin Lebet</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Nephew</span>
+      </div>
+      <div class="card niece-m zitt-side" id="matthew-lebet">
+        <div class="name">Matthew Lebet</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Nephew</span>
+      </div>
+      <div class="card niece-f zitt-side" id="kaitlyn">
+        <div class="name">Kaitlyn</div>
+        <div class="maiden">Different father</div>
+        <span class="tag">Niece</span>
+      </div>
+      <div class="card niece-f zitt-side" id="stephanie-welton">
+        <div class="name">Stephanie Welton</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Niece</span>
+      </div>
+      <div class="card niece-m zitt-side" id="brian-welton">
+        <div class="name">Brian Welton</div>
+        <div class="dob">b. Unknown</div>
+        <span class="tag">Nephew</span>
+      </div>
   </div>
 
 </div>
@@ -539,10 +649,10 @@
   <div class="legend-item"><div class="legend-box" style="border-color:#c0397b;"></div><span>Daughter / Niece</span></div>
   <div class="legend-item"><div class="legend-box" style="border-color:#bbb;background:#f7f7f7;"></div><span>Divorced</span></div>
   <div class="legend-item"><div class="legend-box" style="border-color:#b0b0b0;border-style:dotted;"></div><span>To research</span></div>
-</div>/div>
 </div>
 
 <script>
+
 // ── Toggle ──
 function setMode(mode) {
   const tree = document.getElementById('tree');
@@ -598,24 +708,30 @@ function draw() {
   const C='#c4a06a', BL='#2471a3', GR='#1e8449', OR='#d35400';
   const PU='#6c3483', KB='#2980b9';
 
+  // Gonzalo Perez + Osiris → father + ana-osiris
   const gpG=rel('gp-gonzalo'),gpO=rel('gp-osiris'),father=rel('father'),anaO=rel('ana-osiris');
   if(gpG&&gpO&&father&&anaO) tee(svg,(gpG.cx+gpO.cx)/2,Math.max(gpG.bottom,gpO.bottom),[anaO,father],C);
 
+  // Evaristo + Zolia → mother
   const gpE=rel('gp-evaristo'),gpZ=rel('gp-zolia'),mother=rel('mother');
   if(gpE&&gpZ&&mother) tee(svg,(gpE.cx+gpZ.cx)/2,Math.max(gpE.bottom,gpZ.bottom),[mother],C);
 
+  // Zitt GPs → Dennis Zitt
   const zpgf=rel('zp-gf'),zpgm=rel('zp-gm'),dZitt=rel('dennis-zitt');
   if(zpgf&&zpgm&&dZitt) tee(svg,(zpgf.cx+zpgm.cx)/2,Math.max(zpgf.bottom,zpgm.bottom),[dZitt],BL,true);
 
+  // Coppola GPs → Anna Zitt
   const cgf=rel('coppola-gf'),cgm=rel('coppola-gm'),aZitt=rel('anna-zitt');
   if(cgf&&cgm&&aZitt) tee(svg,(cgf.cx+cgm.cx)/2,Math.max(cgf.bottom,cgm.bottom),[aZitt],BL);
 
+  // Father + Mother → Gonzalo, Juan, Daniel
   const gonzalo=rel('gonzalo'),juan=rel('juan'),daniel=rel('daniel');
   if(father&&mother&&gonzalo&&juan&&daniel)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[gonzalo,juan,daniel],C);
   else if(father&&mother&&juan)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[juan],C);
 
+  // Father + Olga → Joanna
   const olga=rel('olga'),joanna=rel('joanna');
   if(father&&olga&&joanna){
     const ux=(father.cx+olga.cx)/2,fBy=father.bottom;
@@ -625,6 +741,7 @@ function draw() {
     tee(svg,ux,olga.bottom,[joanna],GR,true);
   }
 
+  // Olga + Unknown → Dayanna
   const dayF=rel('dayanna-father'),dayanna=rel('dayanna');
   if(olga&&dayF&&dayanna){
     const ux=(olga.cx+dayF.cx)/2,oBy=olga.bottom;
@@ -634,20 +751,24 @@ function draw() {
     tee(svg,ux,Math.max(olga.bottom,dayF.bottom),[dayanna],OR,true);
   }
 
+  // Ana Osiris + Antonio → cousins
   const antJr=rel('antonio-jr'),anaMtz=rel('ana-martinez'),antSr=rel('antonio-sr');
   if(anaO&&antSr&&antJr&&anaMtz)
     tee(svg,(anaO.right+antSr.left)/2,Math.max(anaO.bottom,antSr.bottom),[antJr,anaMtz],PU);
 
+  // Dennis Zitt + Anna → Deanna, Patricia, Dennis Wayne, Melissa
   const deanna=rel('deanna'),patricia=rel('patricia'),dWayne=rel('dennis-wayne'),melissa=rel('melissa');
   if(dZitt&&aZitt&&melissa){
     const kids=[deanna,patricia,dWayne,melissa].filter(Boolean);
     tee(svg,(dZitt.right+aZitt.left)/2,Math.max(dZitt.bottom,aZitt.bottom),kids,BL);
   }
 
+  // Ana Martinez + Daniel Ramirez → Melenia, Alejandro, Mya, Alexandria
   const dRam=rel('daniel-ramirez'),anaMart=rel('ana-martinez');
   const mel=rel('melenia'),ale=rel('alejandro'),mya2=rel('mya'),alex=rel('alexandria');
   if(anaMart&&dRam&&mel) tee(svg,(anaMart.right+dRam.left)/2,Math.max(anaMart.bottom,dRam.bottom),[mel,ale,mya2,alex].filter(Boolean),PU);
 
+  // Daniel Ramirez → Jamila (dashed)
   const jamila=rel('jamila');
   if(dRam&&jamila){
     const midY=dRam.bottom+(jamila.top-dRam.bottom)*0.5;
@@ -656,19 +777,24 @@ function draw() {
     ln(svg,jamila.cx,midY,jamila.cx,jamila.top,PU,true);
   }
 
+  // Daniel + Jennifer → Sena
   const danP=rel('daniel'),jennifer=rel('jennifer'),sena=rel('sena');
   if(danP&&jennifer&&sena) tee(svg,(danP.right+jennifer.left)/2,Math.max(danP.bottom,jennifer.bottom),[sena],C);
 
+  // Juan + Melissa → Julian, Alexa, Sophia
   const juanR=rel('juan'),melissaR=rel('melissa'),jul=rel('julian'),alx=rel('alexa'),soph=rel('sophia');
   if(juanR&&melissaR&&jul)
     tee(svg,(juanR.right+melissaR.left)/2,Math.max(juanR.bottom,melissaR.bottom),[jul,alx,soph].filter(Boolean),KB);
 
-  const jLSr=rel('john-lebet-sr'),jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
-  if(deanna&&jLSr&&jJr) tee(svg,(deanna.right+jLSr.left)/2,Math.max(deanna.bottom,jLSr.bottom),[jJr,kev,matt].filter(Boolean),BL);
+  // Deanna → John Jr., Kevin, Matthew
+  const jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
+  if(deanna&&jJr) tee(svg,deanna.cx,deanna.bottom,[jJr,kev,matt].filter(Boolean),BL);
 
+  // Patricia + Michael Welton → Stephanie, Brian
   const mWelton=rel('michael-welton'),steph=rel('stephanie-welton'),brian=rel('brian-welton');
   if(patricia&&mWelton&&steph) tee(svg,(patricia.right+mWelton.left)/2,Math.max(patricia.bottom,mWelton.bottom),[steph,brian].filter(Boolean),BL);
 
+  // Patricia → Kaitlyn (dashed, diff father)
   const kaitlyn=rel('kaitlyn');
   if(patricia&&kaitlyn){
     const midY=patricia.bottom+(kaitlyn.top-patricia.bottom)*0.5;
@@ -676,10 +802,47 @@ function draw() {
     ln(svg,patricia.cx,midY,kaitlyn.cx,midY,BL,true);
     ln(svg,kaitlyn.cx,midY,kaitlyn.cx,kaitlyn.top,BL,true);
   }
+
+  // Miguel Dalda + Ana Martinez → Zoila's generation
+  const migD=rel('miguel-dalda'),anaMG=rel('ana-martinez-gg'),anaLD=rel('ana-luisa-dalda'),gerD=rel('gerardo-dalda');
+  const zoliGP=rel('gp-zolia');
+  if(migD&&anaMG&&zoliGP) tee(svg,(migD.right+anaMG.left)/2,Math.max(migD.bottom,anaMG.bottom),[anaLD,zoliGP,gerD].filter(Boolean),C);
+
+  // Lucas Santana + Maria Rangel → Evaristo's generation
+  const lucS=rel('lucas-santana'),marR=rel('maria-rangel'),evGP=rel('gp-evaristo');
+  const juanSB=rel('juan-santana-bro'),juanaS=rel('juana-santana');
+  if(lucS&&marR&&evGP) tee(svg,(lucS.right+marR.left)/2,Math.max(lucS.bottom,marR.bottom),[evGP,juanSB,juanaS].filter(Boolean),C);
+
+  // Delia + Felix Hermida → Enerita, Elisa, Oreste
+  const delM=rel('delia-martinez'),felH=rel('felix-hermida');
+  const enH=rel('enerita-hermida'),elH=rel('elisa-hermida'),orH=rel('oreste-hermida');
+  if(delM&&felH&&enH) tee(svg,(delM.right+felH.left)/2,Math.max(delM.bottom,felH.bottom),[enH,elH,orH].filter(Boolean),C);
+
+  // Rosa + Guillermo Herrera → Nilda, Daizy, Luis
+  const rosaM=rel('rosa-martinez'),guilH=rel('guillermo-herrera');
+  const nildH=rel('nilda-herrera'),daizH=rel('daizy-herrera'),luisH=rel('luis-herrera');
+  if(rosaM&&guilH&&nildH) tee(svg,(rosaM.right+guilH.left)/2,Math.max(rosaM.bottom,guilH.bottom),[nildH,daizH,luisH].filter(Boolean),C);
+
+  // Maria Luisa Dalda → Maria Belen, Guilfredo
+  const mlD=rel('maria-luisa-dalda'),mbD=rel('maria-belen-dalda'),gfD=rel('guilfredo-dalda');
+  if(mlD&&mbD) tee(svg,mlD.cx,mlD.bottom,[mbD,gfD].filter(Boolean),C);
+
+  // Ana Luisa + Manolo Fundora → Ana Herminia
+  const manoF=rel('manolo-fundora'),anaHF=rel('ana-herminia-fundora');
+  if(anaLD&&manoF&&anaHF) tee(svg,(anaLD.right+manoF.left)/2,Math.max(anaLD.bottom,manoF.bottom),[anaHF],C);
+
+  // Gerardo + Elisa Gorrin → Belkys, Idalmis
+  const elisaG=rel('elisa-gorrin'),belkD=rel('belkys-dalda'),idalD=rel('idalmis-dalda');
+  if(gerD&&elisaG&&belkD) tee(svg,(gerD.right+elisaG.left)/2,Math.max(gerD.bottom,elisaG.bottom),[belkD,idalD].filter(Boolean),C);
+
+  // Juan Santana (Evaristo's brother) → Nancy, Juan Jr.
+  const juanSBr=rel('juan-santana-bro'),nancS=rel('nancy-santana'),juanSJr=rel('juan-santana-jr');
+  if(juanSBr&&nancS) tee(svg,juanSBr.cx,juanSBr.bottom,[nancS,juanSJr].filter(Boolean),C);
 }
 
 window.addEventListener('load', draw);
 window.addEventListener('resize', draw);
+
 </script>
 </body>
 </html>
