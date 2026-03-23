@@ -37,7 +37,7 @@
     .tree-mode-perez .zitt-side { display: none !important; }
     .tree-mode-zitt  .perez-side { display: none !important; }
 
-    #tree-scroll { overflow-x: auto; overflow-y: auto; padding: 0 20px 20px; max-height: 90vh; }
+    #tree-scroll { overflow-x: auto; padding: 0 20px 20px; }
 
     #tree {
       position: relative;
@@ -902,14 +902,14 @@ function centerOnCouple() {
 
   treeScroll.scrollLeft = centerX - (viewportWidth / 2);
   treeScroll.scrollTop = centerY - (viewportHeight / 2);
+
+  // Redraw lines after centering to fix coordinates
+  draw();
 }
 
 window.addEventListener('load', function() {
   draw();
-  setTimeout(function() {
-    centerOnCouple();
-    draw(); // Redraw lines after centering
-  }, 100);
+  setTimeout(centerOnCouple, 100);
 });
 window.addEventListener('resize', draw);
 
