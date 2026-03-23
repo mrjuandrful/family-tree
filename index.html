@@ -285,7 +285,10 @@ function draw() {
   const dan_c=rel('daniel'),jen=rel('jennifer');
   const sena=rel('sena');
   if(dan_c&&jen&&sena) {
-    tee(svg,(dan_c.right+jen.left)/2,Math.max(dan_c.bottom,jen.bottom),[sena],P);
+    // Draw straight vertical line directly above Sena
+    const parentY=Math.max(dan_c.bottom,jen.bottom);
+    ln(svg,sena.cx,parentY,sena.cx,parentY+20,P);
+    ln(svg,sena.cx,parentY+20,sena.cx,sena.top,P);
   }
 }
 
