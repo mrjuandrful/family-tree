@@ -234,17 +234,26 @@ function rel(id) {
   };
 }
 
-function ln(svg,x1,y1,x2,y2,col,dash) {
-  const bg=document.createElementNS('http://www.w3.org/2000/svg','line');
-  bg.setAttribute('x1',x1); bg.setAttribute('y1',y1);
-  bg.setAttribute('x2',x2); bg.setAttribute('y2',y2);
-  bg.setAttribute('stroke','rgba(255,255,255,0.82)'); bg.setAttribute('stroke-width','5');
+function curve(svg,x1,y1,x2,y2,col,dash) {
+  // Create smooth curved path using quadratic Bézier curve
+  const midY = (y1 + y2) / 2;
+  const pathData = `M ${x1} ${y1} Q ${x1} ${midY}, ${x2} ${y2}`;
+
+  // White halo background
+  const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
+  bg.setAttribute('d', pathData);
+  bg.setAttribute('stroke','rgba(255,255,255,0.82)');
+  bg.setAttribute('stroke-width','5');
+  bg.setAttribute('fill','none');
   if(dash) bg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(bg);
-  const fg=document.createElementNS('http://www.w3.org/2000/svg','line');
-  fg.setAttribute('x1',x1); fg.setAttribute('y1',y1);
-  fg.setAttribute('x2',x2); fg.setAttribute('y2',y2);
-  fg.setAttribute('stroke',col); fg.setAttribute('stroke-width','2');
+
+  // Colored foreground
+  const fg = document.createElementNS('http://www.w3.org/2000/svg','path');
+  fg.setAttribute('d', pathData);
+  fg.setAttribute('stroke', col);
+  fg.setAttribute('stroke-width', '2');
+  fg.setAttribute('fill', 'none');
   if(dash) fg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(fg);
 }
@@ -252,10 +261,19 @@ function ln(svg,x1,y1,x2,y2,col,dash) {
 function tee(svg,px,py,kids,col,dash) {
   kids=(kids||[]).filter(Boolean);
   if(kids.length===0) return;
-  ln(svg,px,py,px,py+20,col,dash);
-  const l=Math.min(...kids.map(k=>k.cx)),r=Math.max(...kids.map(k=>k.cx));
-  ln(svg,l,py+20,r,py+20,col,dash);
-  kids.forEach(k=>ln(svg,k.cx,py+20,k.cx,k.top,col,dash));
+
+  const midY = py + 40;
+  const l=Math.min(...kids.map(k=>k.cx));
+  const r=Math.max(...kids.map(k=>k.cx));
+
+  // Curved trunk down from parent
+  curve(svg, px, py, px, midY, col, dash);
+
+  // Curved horizontal line across
+  curve(svg, l, midY, r, midY, col, dash);
+
+  // Curved branches up to each child
+  kids.forEach(k => curve(svg, k.cx, midY, k.cx, k.top, col, dash));
 }
 
 function draw() {
@@ -285,10 +303,11 @@ function draw() {
   const dan_c=rel('daniel'),jen=rel('jennifer');
   const sena=rel('sena');
   if(dan_c&&jen&&sena) {
-    // Draw straight vertical line directly above Sena
+    // Draw smooth curved line from parents to Sena
     const parentY=Math.max(dan_c.bottom,jen.bottom);
-    ln(svg,sena.cx,parentY,sena.cx,parentY+20,P);
-    ln(svg,sena.cx,parentY+20,sena.cx,sena.top,P);
+    const parentX=(dan_c.cx+jen.cx)/2;
+    curve(svg, parentX, parentY, sena.cx, parentY+20, P);
+    curve(svg, sena.cx, parentY+20, sena.cx, sena.top, P);
   }
 }
 
