@@ -718,13 +718,15 @@ function rel(id) {
 }
 
 function curve(svg,x1,y1,x2,y2,col,dash) {
-  // Create curly brace { style curve
+  // Create S-shaped curve (serpentine)
   const dist = Math.abs(y2 - y1);
-  const offset = Math.min(dist * 0.5, 80);
+  const offset = Math.min(dist * 0.6, 100);
   const midY = (y1 + y2) / 2;
 
-  const pathData = `M ${x1} ${y1} C ${x1 + offset} ${y1 + dist*0.25}, ${x1 + offset} ${midY - dist*0.15}, ${x1 + offset} ${midY}
-                           C ${x1 + offset} ${midY + dist*0.15}, ${x1 + offset} ${y2 - dist*0.25}, ${x2} ${y2}`;
+  // S curve: out right on top, out left on bottom
+  const pathData = `M ${x1} ${y1}
+                    C ${x1 + offset} ${y1 + dist*0.3}, ${x1 + offset} ${midY - dist*0.15}, ${x1} ${midY}
+                    C ${x1 - offset} ${midY + dist*0.15}, ${x1 - offset} ${y2 - dist*0.3}, ${x2} ${y2}`;
 
   const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
   bg.setAttribute('d', pathData);
