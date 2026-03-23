@@ -2,44 +2,44 @@
 """
 generate_tree.py
 ================
-Generates index.html for the Perez · Zitt Family Tree.
+Generates index.html for the Perez Â· Zitt Family Tree.
 
 Usage:
     python3 generate_tree.py            # writes index.html to current directory
     python3 generate_tree.py --preview  # opens the result in a browser
 
 All family data lives in the DATA section below.
-Edit data here → run script → commit index.html → GitHub Pages auto-updates.
+Edit data here â run script â commit index.html â GitHub Pages auto-updates.
 """
 
 import sys
 import textwrap
 from pathlib import Path
 
-# ══════════════════════════════════════════════════════════════════
-#  DATA  —  edit this section to update the tree
-# ══════════════════════════════════════════════════════════════════
+# ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+#  DATA  â  edit this section to update the tree
+# ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 HEADER = {
-    "title":    "Perez · Zitt Family Tree",
-    "subtitle": "Juan Miguel Perez &amp; Melissa Perez (née Zitt) &nbsp;·&nbsp; Updated March 2026",
+    "title":    "Perez Â· Zitt Family Tree",
+    "subtitle": "Juan Miguel Perez &amp; Melissa Perez (nÃ©e Zitt) &nbsp;Â·&nbsp; Updated March 2026",
 }
 
 # Each person is a dict with keys:
-#   id        – unique HTML id (required)
-#   name      – display name
-#   maiden    – maiden / alt name (optional)
-#   dob       – date of birth string (optional)
-#   note      – small italic note (optional)
-#   tag       – relationship label (optional)
-#   css       – extra CSS classes beyond "card" (optional, list)
-#   side      – "perez" | "zitt" | None  → adds perez-side / zitt-side class
+#   id        â unique HTML id (required)
+#   name      â display name
+#   maiden    â maiden / alt name (optional)
+#   dob       â date of birth string (optional)
+#   note      â small italic note (optional)
+#   tag       â relationship label (optional)
+#   css       â extra CSS classes beyond "card" (optional, list)
+#   side      â "perez" | "zitt" | None  â adds perez-side / zitt-side class
 
 def person(id, name, maiden=None, dob=None, note=None, tag=None, css=None, side=None):
     return dict(id=id, name=name, maiden=maiden, dob=dob,
                 note=note, tag=tag, css=css or [], side=side)
 
-# ── Great-Grandparents ───────────────────────────────────────────
+# ââ Great-Grandparents âââââââââââââââââââââââââââââââââââââââââââ
 
 GREAT_GRANDPARENTS = [
     # Zoila's parents: Miguel Dalda + Ana Martinez (and Ana's siblings)
@@ -70,18 +70,18 @@ GREAT_GRANDPARENTS = [
     ("perez_single", person("ramona-santana",      "Ramona Santana",     dob="b. Unknown", tag="Grand-Aunt")),
 ]
 
-# ── Grandparents (+ their siblings) ─────────────────────────────
+# ââ Grandparents (+ their siblings) âââââââââââââââââââââââââââââ
 
 GRANDPARENTS = [
     # Perez side
     ("perez", [
         person("gp-gonzalo", "Gonzalo Perez", dob="b. Unknown", tag="Grandfather"),
-        person("gp-osiris",  "Osiris Perez",  maiden="née Ramos", dob="b. Unknown", tag="Grandmother"),
+        person("gp-osiris",  "Osiris Perez",  maiden="nÃ©e Ramos", dob="b. Unknown", tag="Grandmother"),
     ]),
     # Santana/Dalda: Evaristo + Zolia + their siblings
     ("perez", [
         person("gp-evaristo", "Evaristo Santana", dob="b. Unknown", tag="Grandfather"),
-        person("gp-zolia",    "Zolia Santana",    maiden="née Dalda", dob="b. Unknown", tag="Grandmother"),
+        person("gp-zolia",    "Zolia Santana",    maiden="nÃ©e Dalda", dob="b. Unknown", tag="Grandmother"),
     ]),
     ("perez", [
         person("ana-luisa-dalda", "Ana Luisa Dalda", dob="b. Unknown", tag="Grand-Aunt"),
@@ -104,24 +104,24 @@ GRANDPARENTS = [
     ]),
     ("zitt", [
         person("coppola-gf", "Louis Joseph Coppola", dob="b. Unknown", tag="Grandfather", css=["zitt"]),
-        person("coppola-gm", "Anne Coppola", maiden="née Neri", dob="b. Unknown",
+        person("coppola-gm", "Anne Coppola", maiden="nÃ©e Neri", dob="b. Unknown",
                tag="Grandmother", css=["zitt"]),
     ]),
 ]
 
-# ── Parents generation ────────────────────────────────────────────
+# ââ Parents generation ââââââââââââââââââââââââââââââââââââââââââââ
 
 PARENTS = [
     # Aunt + uncle (perez side)
     ("perez", [
-        person("ana-osiris",  "Ana Osiris Martinez", maiden="née Perez", dob="b. Unknown",
+        person("ana-osiris",  "Ana Osiris Martinez", maiden="nÃ©e Perez", dob="b. Unknown",
                tag="Aunt (Paternal)", css=["cousin"]),
         person("antonio-sr",  "Antonio Martinez",   dob="b. Unknown", tag="Uncle", css=["cousin"]),
     ]),
     # Juan's parents
     ("perez", [
         person("father", "Juan Gonzalo Perez", dob="b. June 11, 1955", tag="Father"),
-        person("mother", "Zaida Perez", maiden="née Santana", dob="b. Sep 13, 1957", tag="Mother"),
+        person("mother", "Zaida Perez", maiden="nÃ©e Santana", dob="b. Sep 13, 1957", tag="Mother"),
     ]),
     # Stepmother + Dayanna's father (singles, perez side)
     ("perez_single", person("olga", "Olga", dob="b. Unknown", tag="Stepmother", css=["unknown"])),
@@ -131,35 +131,35 @@ PARENTS = [
     ("zitt", [
         person("dennis-zitt", "Dennis Herbert Zitt", dob="b. Apr 27, 1949",
                tag="Father-in-law", css=["zitt"]),
-        person("anna-zitt",   "Anna Louise Zitt", maiden="née Coppola", dob="b. Mar 25, 1952",
+        person("anna-zitt",   "Anna Louise Zitt", maiden="nÃ©e Coppola", dob="b. Mar 25, 1952",
                tag="Mother-in-law", css=["zitt"]),
     ]),
 ]
 
-# ── Juan & Melissa's generation ───────────────────────────────────
+# ââ Juan & Melissa's generation âââââââââââââââââââââââââââââââââââ
 
 GEN3 = [
     # Martinez cousins
     ("perez_single", person("antonio-jr", "Antonio Martinez", dob="b. Unknown",
                             tag="Cousin", css=["cousin"])),
     ("perez", [
-        person("ana-martinez",   "Ana Margarita Ramirez", maiden="née Martinez", dob="b. Unknown",
+        person("ana-martinez",   "Ana Margarita Ramirez", maiden="nÃ©e Martinez", dob="b. Unknown",
                tag="Cousin", css=["cousin"]),
         person("daniel-ramirez", "Daniel Ramirez", dob="b. Unknown",
                tag="Cousin-in-law", css=["cousin"]),
     ]),
     # Gonzalo (single)
     ("perez_single", person("gonzalo", "Gonzalo E. Perez", dob="b. July 27, 1976", tag="Brother")),
-    # THE COUPLE — no side filter (always visible)
+    # THE COUPLE â no side filter (always visible)
     (None, [
         person("juan",    "Juan Miguel Perez", dob="b. Oct 28, 1980", tag="You",    css=["you"]),
-        person("melissa", "Melissa Perez", maiden="née Zitt", dob="b. Mar 15, 1981",
+        person("melissa", "Melissa Perez", maiden="nÃ©e Zitt", dob="b. Mar 15, 1981",
                tag="Spouse", css=["spouse"]),
     ]),
     # Daniel + Jennifer
     ("perez", [
         person("daniel",   "Daniel Orlando Perez", dob="b. June 23, 1982", tag="Brother"),
-        person("jennifer", "Jennifer Perez", maiden="née Safanova",
+        person("jennifer", "Jennifer Perez", maiden="nÃ©e Safanova",
                tag="Sister-in-law", css=["in-law"]),
     ]),
     # Half-siblings
@@ -168,19 +168,19 @@ GEN3 = [
                             note="Olga's daughter (diff. father)",
                             tag="Joanna's Half-Sister", css=["half"])),
     # Zitt siblings
-    ("zitt_single", person("deanna", "Deanna Marie Lebet", maiden="née Zitt", dob="b. Aug 13, 1969",
+    ("zitt_single", person("deanna", "Deanna Marie Lebet", maiden="nÃ©e Zitt", dob="b. Aug 13, 1969",
                            tag="Sister-in-law", css=["zitt-sib"])),
     ("zitt", [
-        person("patricia",       "Patricia Ann Welton", maiden="née Zitt", dob="b. June 12, 1971",
+        person("patricia",       "Patricia Ann Welton", maiden="nÃ©e Zitt", dob="b. June 12, 1971",
                tag="Sister-in-law", css=["zitt-sib"]),
         person("michael-welton", "Michael Welton", tag="Brother-in-law", css=["in-law"]),
     ]),
     ("zitt_single", person("dennis-wayne", "Dennis Wayne Zitt", dob="b. June 14, 1974",
-                           note="Divorced · No children",
+                           note="Divorced Â· No children",
                            tag="Brother-in-law", css=["zitt-sib"])),
 ]
 
-# ── Children / next generation ────────────────────────────────────
+# ââ Children / next generation ââââââââââââââââââââââââââââââââââââ
 
 KIDS = [
     # Ramirez 2nd cousins
@@ -190,7 +190,7 @@ KIDS = [
     ("perez_single", person("alexandria","Alexandria Ramirez",  dob="b. Unknown", tag="2nd Cousin", css=["cousin"])),
     ("perez_single", person("jamila",    "Jamila Ramirez", dob="b. Unknown",
                             note="Mother unknown", tag="2nd Cousin", css=["cousin"])),
-    # Juan + Melissa's children — no side (always visible)
+    # Juan + Melissa's children â no side (always visible)
     (None,           person("julian", "Julian Lucas Perez",  dob="b. Feb 4, 2011",  tag="Son",      css=["child-m"])),
     (None,           person("alexa",  "Alexa Santana Perez", dob="b. Feb 4, 2015",  tag="Daughter", css=["child-f"])),
     (None,           person("sophia", "Sophia Quinn Perez",  dob="b. Oct 4, 2022",  tag="Daughter", css=["child-f"])),
@@ -208,7 +208,7 @@ KIDS = [
     ("zitt_single",  person("brian-welton",     "Brian Welton",     dob="b. Unknown", tag="Nephew",  css=["niece-m"])),
 ]
 
-# ── Grandparent cousins (children of grandparent siblings + great-GP siblings) ──
+# ââ Grandparent cousins (children of grandparent siblings + great-GP siblings) ââ
 
 GP_COUSINS = [
     # Children of Delia Martinez + Felix Hermida
@@ -224,7 +224,7 @@ GP_COUSINS = [
     ("perez_single", person("guilfredo-dalda",   "Guilfredo Dalda",   dob="b. Unknown", tag="Grand-Cousin")),
     # Child of Ana Luisa Dalda + Manolo Fundora
     ("perez_single", person("ana-herminia-fundora", "Ana Herminia Fundora", dob="b. Unknown",
-                             note="née Fundora", tag="Grand-Cousin")),
+                             note="nÃ©e Fundora", tag="Grand-Cousin")),
     # Children of Gerardo Dalda + Elisa Gorrin
     ("perez_single", person("belkys-dalda",  "Belkys Dalda",  dob="b. Unknown", tag="Grand-Cousin")),
     ("perez_single", person("idalmis-dalda", "Idalmis Dalda", dob="b. Unknown", tag="Grand-Cousin")),
@@ -233,13 +233,13 @@ GP_COUSINS = [
     ("perez_single", person("juan-santana-jr", "Juan Santana Jr.", dob="b. Unknown", tag="Grand-Cousin")),
 ]
 
-# ── SVG connector rules ───────────────────────────────────────────
+# ââ SVG connector rules âââââââââââââââââââââââââââââââââââââââââââ
 # Each rule is a dict:
-#   parents  – list of person ids forming the couple midpoint
-#   children – list of child person ids
-#   color    – CSS color string
-#   dash     – bool (dashed line)
-#   special  – "father-olga" | "olga-dayanna" (for offset connectors)
+#   parents  â list of person ids forming the couple midpoint
+#   children â list of child person ids
+#   color    â CSS color string
+#   dash     â bool (dashed line)
+#   special  â "father-olga" | "olga-dayanna" (for offset connectors)
 
 CONNECTORS = [
     dict(parents=["gp-gonzalo","gp-osiris"],   children=["ana-osiris","father"], color="C"),
@@ -268,9 +268,9 @@ CONNECTORS = [
     dict(parents=["juan-santana-bro"],                  children=["nancy-santana","juan-santana-jr"], color="C"),
 ]
 
-# ══════════════════════════════════════════════════════════════════
-#  HTML RENDERING  —  no need to edit below this line
-# ══════════════════════════════════════════════════════════════════
+# ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+#  HTML RENDERING  â  no need to edit below this line
+# ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 CSS = """
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -315,7 +315,7 @@ CSS = """
     #svg-lines {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none; z-index: 0; overflow: visible;
+      pointer-events: none; z-index: 2; overflow: visible;
     }
 
     .gen-row {
@@ -397,10 +397,38 @@ CSS = """
               margin-top: 10px; padding: 0 20px; }
     .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.72em; color: #555; }
     .legend-box  { width: 18px; height: 11px; border-radius: 3px; border: 2px solid; }
+
+    /* ââ Relationship panel ââ */
+    #rel-panel {
+      display: none; position: fixed; bottom: 24px; right: 24px;
+      background: #fff; border: 2px solid #d4b896; border-radius: 14px;
+      padding: 16px 20px 14px; max-width: 260px; min-width: 190px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.16); z-index: 9999;
+      font-family: 'Georgia', serif; animation: slideUp .18s ease;
+    }
+    #rel-panel.visible { display: block; }
+    @keyframes slideUp {
+      from { opacity:0; transform: translateY(12px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    #rel-panel .rp-name   { font-size: 1em; font-weight: bold; color: #2c1a0e; margin-bottom: 4px; }
+    #rel-panel .rp-maiden { font-size: 0.78em; color: #9b7340; font-style: italic; margin-bottom: 2px; }
+    #rel-panel .rp-rel    { font-size: 0.82em; color: #fff; background: #9b7340;
+                            display: inline-block; border-radius: 20px;
+                            padding: 2px 10px; margin: 5px 0 3px; }
+    #rel-panel .rp-dob    { font-size: 0.75em; color: #777; }
+    #rel-panel .rp-note   { font-size: 0.72em; color: #999; font-style: italic; margin-top: 3px; }
+    #rel-panel .rp-close  {
+      position: absolute; top: 8px; right: 10px;
+      font-size: 1em; color: #aaa; cursor: pointer; line-height: 1;
+      background: none; border: none; font-family: inherit;
+    }
+    #rel-panel .rp-close:hover { color: #c0392b; }
+    .card { cursor: pointer; }
 """
 
 JS = """
-// ── Toggle ──
+// ââ Toggle ââ
 function setMode(mode) {
   const tree = document.getElementById('tree');
   tree.classList.remove('tree-mode-perez','tree-mode-zitt');
@@ -413,7 +441,7 @@ function setMode(mode) {
   setTimeout(draw, 120);
 }
 
-// ── Connector helpers ──
+// ââ Connector helpers ââ
 function rel(id) {
   const el = document.getElementById(id);
   if (!el || el.offsetParent === null) return null;
@@ -427,6 +455,14 @@ function rel(id) {
 }
 
 function ln(svg,x1,y1,x2,y2,col,dash) {
+  // White halo behind line so it's legible when crossing card backgrounds
+  const bg=document.createElementNS('http://www.w3.org/2000/svg','line');
+  bg.setAttribute('x1',x1); bg.setAttribute('y1',y1);
+  bg.setAttribute('x2',x2); bg.setAttribute('y2',y2);
+  bg.setAttribute('stroke','rgba(255,255,255,0.82)'); bg.setAttribute('stroke-width','5');
+  if(dash) bg.setAttribute('stroke-dasharray','6 4');
+  svg.appendChild(bg);
+  // Colored foreground stroke
   const l=document.createElementNS('http://www.w3.org/2000/svg','line');
   l.setAttribute('x1',x1); l.setAttribute('y1',y1);
   l.setAttribute('x2',x2); l.setAttribute('y2',y2);
@@ -455,30 +491,30 @@ function draw() {
   const C='#c4a06a', BL='#2471a3', GR='#1e8449', OR='#d35400';
   const PU='#6c3483', KB='#2980b9';
 
-  // Gonzalo Perez + Osiris → father + ana-osiris
+  // Gonzalo Perez + Osiris â father + ana-osiris
   const gpG=rel('gp-gonzalo'),gpO=rel('gp-osiris'),father=rel('father'),anaO=rel('ana-osiris');
   if(gpG&&gpO&&father&&anaO) tee(svg,(gpG.cx+gpO.cx)/2,Math.max(gpG.bottom,gpO.bottom),[anaO,father],C);
 
-  // Evaristo + Zolia → mother
+  // Evaristo + Zolia â mother
   const gpE=rel('gp-evaristo'),gpZ=rel('gp-zolia'),mother=rel('mother');
   if(gpE&&gpZ&&mother) tee(svg,(gpE.cx+gpZ.cx)/2,Math.max(gpE.bottom,gpZ.bottom),[mother],C);
 
-  // Zitt GPs → Dennis Zitt
+  // Zitt GPs â Dennis Zitt
   const zpgf=rel('zp-gf'),zpgm=rel('zp-gm'),dZitt=rel('dennis-zitt');
   if(zpgf&&zpgm&&dZitt) tee(svg,(zpgf.cx+zpgm.cx)/2,Math.max(zpgf.bottom,zpgm.bottom),[dZitt],BL,true);
 
-  // Coppola GPs → Anna Zitt
+  // Coppola GPs â Anna Zitt
   const cgf=rel('coppola-gf'),cgm=rel('coppola-gm'),aZitt=rel('anna-zitt');
   if(cgf&&cgm&&aZitt) tee(svg,(cgf.cx+cgm.cx)/2,Math.max(cgf.bottom,cgm.bottom),[aZitt],BL);
 
-  // Father + Mother → Gonzalo, Juan, Daniel
+  // Father + Mother â Gonzalo, Juan, Daniel
   const gonzalo=rel('gonzalo'),juan=rel('juan'),daniel=rel('daniel');
   if(father&&mother&&gonzalo&&juan&&daniel)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[gonzalo,juan,daniel],C);
   else if(father&&mother&&juan)
     tee(svg,(father.right+mother.left)/2,Math.max(father.bottom,mother.bottom),[juan],C);
 
-  // Father + Olga → Joanna
+  // Father + Olga â Joanna
   const olga=rel('olga'),joanna=rel('joanna');
   if(father&&olga&&joanna){
     const ux=(father.cx+olga.cx)/2,fBy=father.bottom;
@@ -488,7 +524,7 @@ function draw() {
     tee(svg,ux,olga.bottom,[joanna],GR,true);
   }
 
-  // Olga + Unknown → Dayanna
+  // Olga + Unknown â Dayanna
   const dayF=rel('dayanna-father'),dayanna=rel('dayanna');
   if(olga&&dayF&&dayanna){
     const ux=(olga.cx+dayF.cx)/2,oBy=olga.bottom;
@@ -498,24 +534,24 @@ function draw() {
     tee(svg,ux,Math.max(olga.bottom,dayF.bottom),[dayanna],OR,true);
   }
 
-  // Ana Osiris + Antonio → cousins
+  // Ana Osiris + Antonio â cousins
   const antJr=rel('antonio-jr'),anaMtz=rel('ana-martinez'),antSr=rel('antonio-sr');
   if(anaO&&antSr&&antJr&&anaMtz)
     tee(svg,(anaO.right+antSr.left)/2,Math.max(anaO.bottom,antSr.bottom),[antJr,anaMtz],PU);
 
-  // Dennis Zitt + Anna → Deanna, Patricia, Dennis Wayne, Melissa
+  // Dennis Zitt + Anna â Deanna, Patricia, Dennis Wayne, Melissa
   const deanna=rel('deanna'),patricia=rel('patricia'),dWayne=rel('dennis-wayne'),melissa=rel('melissa');
   if(dZitt&&aZitt&&melissa){
     const kids=[deanna,patricia,dWayne,melissa].filter(Boolean);
     tee(svg,(dZitt.right+aZitt.left)/2,Math.max(dZitt.bottom,aZitt.bottom),kids,BL);
   }
 
-  // Ana Martinez + Daniel Ramirez → Melenia, Alejandro, Mya, Alexandria
+  // Ana Martinez + Daniel Ramirez â Melenia, Alejandro, Mya, Alexandria
   const dRam=rel('daniel-ramirez'),anaMart=rel('ana-martinez');
   const mel=rel('melenia'),ale=rel('alejandro'),mya2=rel('mya'),alex=rel('alexandria');
   if(anaMart&&dRam&&mel) tee(svg,(anaMart.right+dRam.left)/2,Math.max(anaMart.bottom,dRam.bottom),[mel,ale,mya2,alex].filter(Boolean),PU);
 
-  // Daniel Ramirez → Jamila (dashed)
+  // Daniel Ramirez â Jamila (dashed)
   const jamila=rel('jamila');
   if(dRam&&jamila){
     const midY=dRam.bottom+(jamila.top-dRam.bottom)*0.5;
@@ -524,24 +560,24 @@ function draw() {
     ln(svg,jamila.cx,midY,jamila.cx,jamila.top,PU,true);
   }
 
-  // Daniel + Jennifer → Sena
+  // Daniel + Jennifer â Sena
   const danP=rel('daniel'),jennifer=rel('jennifer'),sena=rel('sena');
   if(danP&&jennifer&&sena) tee(svg,(danP.right+jennifer.left)/2,Math.max(danP.bottom,jennifer.bottom),[sena],C);
 
-  // Juan + Melissa → Julian, Alexa, Sophia
+  // Juan + Melissa â Julian, Alexa, Sophia
   const juanR=rel('juan'),melissaR=rel('melissa'),jul=rel('julian'),alx=rel('alexa'),soph=rel('sophia');
   if(juanR&&melissaR&&jul)
     tee(svg,(juanR.right+melissaR.left)/2,Math.max(juanR.bottom,melissaR.bottom),[jul,alx,soph].filter(Boolean),KB);
 
-  // Deanna → John Jr., Kevin, Matthew
+  // Deanna â John Jr., Kevin, Matthew
   const jJr=rel('john-lebet-jr'),kev=rel('kevin-lebet'),matt=rel('matthew-lebet');
   if(deanna&&jJr) tee(svg,deanna.cx,deanna.bottom,[jJr,kev,matt].filter(Boolean),BL);
 
-  // Patricia + Michael Welton → Stephanie, Brian
+  // Patricia + Michael Welton â Stephanie, Brian
   const mWelton=rel('michael-welton'),steph=rel('stephanie-welton'),brian=rel('brian-welton');
   if(patricia&&mWelton&&steph) tee(svg,(patricia.right+mWelton.left)/2,Math.max(patricia.bottom,mWelton.bottom),[steph,brian].filter(Boolean),BL);
 
-  // Patricia → Kaitlyn (dashed, diff father)
+  // Patricia â Kaitlyn (dashed, diff father)
   const kaitlyn=rel('kaitlyn');
   if(patricia&&kaitlyn){
     const midY=patricia.bottom+(kaitlyn.top-patricia.bottom)*0.5;
@@ -550,45 +586,93 @@ function draw() {
     ln(svg,kaitlyn.cx,midY,kaitlyn.cx,kaitlyn.top,BL,true);
   }
 
-  // Miguel Dalda + Ana Martinez → Zoila's generation
+  // Miguel Dalda + Ana Martinez â Zoila's generation
   const migD=rel('miguel-dalda'),anaMG=rel('ana-martinez-gg'),anaLD=rel('ana-luisa-dalda'),gerD=rel('gerardo-dalda');
   const zoliGP=rel('gp-zolia');
   if(migD&&anaMG&&zoliGP) tee(svg,(migD.right+anaMG.left)/2,Math.max(migD.bottom,anaMG.bottom),[anaLD,zoliGP,gerD].filter(Boolean),C);
 
-  // Lucas Santana + Maria Rangel → Evaristo's generation
+  // Lucas Santana + Maria Rangel â Evaristo's generation
   const lucS=rel('lucas-santana'),marR=rel('maria-rangel'),evGP=rel('gp-evaristo');
   const juanSB=rel('juan-santana-bro'),juanaS=rel('juana-santana');
   if(lucS&&marR&&evGP) tee(svg,(lucS.right+marR.left)/2,Math.max(lucS.bottom,marR.bottom),[evGP,juanSB,juanaS].filter(Boolean),C);
 
-  // Delia + Felix Hermida → Enerita, Elisa, Oreste
+  // Delia + Felix Hermida â Enerita, Elisa, Oreste
   const delM=rel('delia-martinez'),felH=rel('felix-hermida');
   const enH=rel('enerita-hermida'),elH=rel('elisa-hermida'),orH=rel('oreste-hermida');
   if(delM&&felH&&enH) tee(svg,(delM.right+felH.left)/2,Math.max(delM.bottom,felH.bottom),[enH,elH,orH].filter(Boolean),C);
 
-  // Rosa + Guillermo Herrera → Nilda, Daizy, Luis
+  // Rosa + Guillermo Herrera â Nilda, Daizy, Luis
   const rosaM=rel('rosa-martinez'),guilH=rel('guillermo-herrera');
   const nildH=rel('nilda-herrera'),daizH=rel('daizy-herrera'),luisH=rel('luis-herrera');
   if(rosaM&&guilH&&nildH) tee(svg,(rosaM.right+guilH.left)/2,Math.max(rosaM.bottom,guilH.bottom),[nildH,daizH,luisH].filter(Boolean),C);
 
-  // Maria Luisa Dalda → Maria Belen, Guilfredo
+  // Maria Luisa Dalda â Maria Belen, Guilfredo
   const mlD=rel('maria-luisa-dalda'),mbD=rel('maria-belen-dalda'),gfD=rel('guilfredo-dalda');
   if(mlD&&mbD) tee(svg,mlD.cx,mlD.bottom,[mbD,gfD].filter(Boolean),C);
 
-  // Ana Luisa + Manolo Fundora → Ana Herminia
+  // Ana Luisa + Manolo Fundora â Ana Herminia
   const manoF=rel('manolo-fundora'),anaHF=rel('ana-herminia-fundora');
   if(anaLD&&manoF&&anaHF) tee(svg,(anaLD.right+manoF.left)/2,Math.max(anaLD.bottom,manoF.bottom),[anaHF],C);
 
-  // Gerardo + Elisa Gorrin → Belkys, Idalmis
+  // Gerardo + Elisa Gorrin â Belkys, Idalmis
   const elisaG=rel('elisa-gorrin'),belkD=rel('belkys-dalda'),idalD=rel('idalmis-dalda');
   if(gerD&&elisaG&&belkD) tee(svg,(gerD.right+elisaG.left)/2,Math.max(gerD.bottom,elisaG.bottom),[belkD,idalD].filter(Boolean),C);
 
-  // Juan Santana (Evaristo's brother) → Nancy, Juan Jr.
+  // Juan Santana (Evaristo's brother) â Nancy, Juan Jr.
   const juanSBr=rel('juan-santana-bro'),nancS=rel('nancy-santana'),juanSJr=rel('juan-santana-jr');
   if(juanSBr&&nancS) tee(svg,juanSBr.cx,juanSBr.bottom,[nancS,juanSJr].filter(Boolean),C);
 }
 
 window.addEventListener('load', draw);
 window.addEventListener('resize', draw);
+
+// ââ Relationship panel ââ
+function openRelPanel(card) {
+  const name   = card.querySelector('.name')   ? card.querySelector('.name').innerText   : '';
+  const maiden = card.querySelector('.maiden') ? card.querySelector('.maiden').innerText : '';
+  const rel    = card.querySelector('.tag')    ? card.querySelector('.tag').innerText    : '';
+  const dob    = card.querySelector('.dob')    ? card.querySelector('.dob').innerText    : '';
+  const note   = card.querySelector('.note')   ? card.querySelector('.note').innerText   : '';
+
+  const panel = document.getElementById('rel-panel');
+  panel.querySelector('.rp-name').innerText   = name;
+  panel.querySelector('.rp-maiden').innerText = maiden;
+  panel.querySelector('.rp-rel').innerText    = rel   || 'â';
+  panel.querySelector('.rp-dob').innerText    = dob;
+  panel.querySelector('.rp-note').innerText   = note;
+
+  // Style the relationship badge to match the card color
+  const badge = panel.querySelector('.rp-rel');
+  const cardClasses = card.className.split(/\\s+/);
+  const colorMap = {
+    'you':'#c0392b','spouse':'#7d3c98','half':'#1e8449',
+    'child-m':'#2980b9','child-f':'#c0397b','zitt':'#2471a3',
+    'zitt-sib':'#2471a3','cousin':'#6c3483','niece-m':'#1a7abf',
+    'niece-f':'#b0306a','in-law':'#666','unknown':'#999',
+    'tbd':'#aaa','divorced':'#888'
+  };
+  let bg = '#9b7340';
+  for (const cls of cardClasses) { if (colorMap[cls]) { bg = colorMap[cls]; break; } }
+  badge.style.background = bg;
+
+  // Toggle: clicking same card again closes panel
+  if (panel.classList.contains('visible') && panel.dataset.openId === card.id) {
+    closeRelPanel(); return;
+  }
+  panel.dataset.openId = card.id;
+  panel.classList.add('visible');
+}
+
+function closeRelPanel() {
+  const panel = document.getElementById('rel-panel');
+  panel.classList.remove('visible');
+  panel.dataset.openId = '';
+}
+
+// Close panel when clicking outside any card
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.card') && !e.target.closest('#rel-panel')) closeRelPanel();
+});
 """
 
 LEGEND_ITEMS = [
@@ -609,7 +693,7 @@ def render_card(p):
     side_cls = f" {p['side']}-side" if p.get("side") else ""
     extra = " ".join(p.get("css", []))
     classes = f"card{(' ' + extra) if extra else ''}{side_cls}"
-    lines = [f'<div class="{classes}" id="{p["id"]}">']
+    lines = [f'<div class="{classes}" id="{p["id"]}" onclick="openRelPanel(this)">']
     lines.append(f'  <div class="name">{p["name"]}</div>')
     if p.get("maiden"):
         lines.append(f'  <div class="maiden">{p["maiden"]}</div>')
@@ -629,7 +713,7 @@ def render_couple(people, side=None):
     for i, p in enumerate(people):
         out.append(render_card(p))
         if i < len(people) - 1:
-            out.append('      <span class="heart">♥</span>')
+            out.append('      <span class="heart">â¥</span>')
     out.append("    </div>")
     return "\n".join(out)
 
@@ -696,20 +780,20 @@ def generate_html():
 <body>
 
 <header>
-  <h1>🌳 {HEADER['title']}</h1>
+  <h1>ð³ {HEADER['title']}</h1>
   <p>{HEADER['subtitle']}</p>
 </header>
 
 <div class="toggle-bar">
-  <button id="btn-all"   onclick="setMode('all')"   class="active">🌳 Full Family Tree</button>
-  <button id="btn-perez" onclick="setMode('perez')">🏠 Perez Family Only</button>
-  <button id="btn-zitt"  onclick="setMode('zitt')"  class="zitt-btn">🏠 Zitt · Coppola Family Only</button>
+  <button id="btn-all"   onclick="setMode('all')"   class="active">ð³ Full Family Tree</button>
+  <button id="btn-perez" onclick="setMode('perez')">ð  Perez Family Only</button>
+  <button id="btn-zitt"  onclick="setMode('zitt')"  class="zitt-btn">ð  Zitt Â· Coppola Family Only</button>
 </div>
 
 <div class="banner-row">
-  <span class="side-banner perez perez-side">⬅ Perez · Santana Family</span>
-  <span style="font-size:0.72em;color:#aaa;font-style:italic;">← families join at Juan &amp; Melissa →</span>
-  <span class="side-banner zitt zitt-side">Zitt · Coppola Family ➡</span>
+  <span class="side-banner perez perez-side">â¬ Perez Â· Santana Family</span>
+  <span style="font-size:0.72em;color:#aaa;font-style:italic;">â families join at Juan &amp; Melissa â</span>
+  <span class="side-banner zitt zitt-side">Zitt Â· Coppola Family â¡</span>
 </div>
 
 <div id="tree-scroll">
@@ -733,6 +817,16 @@ def generate_html():
 
 {render_legend()}
 
+<!-- Relationship panel -->
+<div id="rel-panel">
+  <button class="rp-close" onclick="closeRelPanel()">â</button>
+  <div class="rp-name"></div>
+  <div class="rp-maiden"></div>
+  <span class="rp-rel"></span>
+  <div class="rp-dob"></div>
+  <div class="rp-note"></div>
+</div>
+
 <script>
 {JS}
 </script>
@@ -745,7 +839,7 @@ if __name__ == "__main__":
     html = generate_html()
     out_path = Path("index.html")
     out_path.write_text(html, encoding="utf-8")
-    print(f"✅  Written {len(html):,} chars → {out_path.resolve()}")
+    print(f"â  Written {len(html):,} chars â {out_path.resolve()}")
 
     if "--preview" in sys.argv:
         import webbrowser
