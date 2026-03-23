@@ -906,7 +906,10 @@ function centerOnCouple() {
 
 window.addEventListener('load', function() {
   draw();
-  setTimeout(centerOnCouple, 100);
+  setTimeout(function() {
+    centerOnCouple();
+    draw(); // Redraw lines after centering
+  }, 100);
 });
 window.addEventListener('resize', draw);
 
