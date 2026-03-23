@@ -304,7 +304,7 @@ CSS = """
     .tree-mode-perez .zitt-side { display: none !important; }
     .tree-mode-zitt  .perez-side { display: none !important; }
 
-    #tree-scroll { overflow-x: auto; padding: 0 20px 20px; }
+    #tree-scroll { overflow-x: auto; overflow-y: auto; padding: 0 20px 20px; max-height: 90vh; }
 
     #tree {
       position: relative;
@@ -623,7 +623,32 @@ function draw() {
   if(juanSBr&&nancS) tee(svg,juanSBr.cx,juanSBr.bottom,[nancS,juanSJr].filter(Boolean),C);
 }
 
-window.addEventListener('load', draw);
+// ── Auto-center on Juan & Melissa ──
+function centerOnCouple() {
+  const treeScroll = document.getElementById('tree-scroll');
+  const juan = document.getElementById('juan');
+  const melissa = document.getElementById('melissa');
+
+  if (!juan || !melissa || !treeScroll) return;
+
+  // Calculate the center point between Juan and Melissa
+  const centerX = (juan.offsetLeft + melissa.offsetLeft) / 2 + (juan.offsetWidth) / 2;
+  const centerY = (juan.offsetTop + melissa.offsetTop) / 2 + (juan.offsetHeight) / 2;
+
+  // Get viewport dimensions
+  const viewportWidth = treeScroll.clientWidth;
+  const viewportHeight = treeScroll.clientHeight;
+
+  // Scroll to center the couple in the viewport
+  treeScroll.scrollLeft = centerX - (viewportWidth / 2);
+  treeScroll.scrollTop = centerY - (viewportHeight / 2);
+}
+
+window.addEventListener('load', function() {
+  draw();
+  // Small delay to ensure DOM is fully rendered
+  setTimeout(centerOnCouple, 100);
+});
 window.addEventListener('resize', draw);
 
 // ââ Relationship panel ââ
