@@ -235,12 +235,9 @@ function rel(id) {
 }
 
 function curve(svg,x1,y1,x2,y2,col,dash) {
-  // Create smooth rounded curved path using cubic Bézier curve
-  const dist = Math.abs(y2 - y1);
-  const curve_amount = Math.min(dist * 0.4, 60); // Smooth, rounded curve
-
-  // Cubic Bézier curve for rounder corners
-  const pathData = `M ${x1} ${y1} C ${x1} ${y1 + curve_amount}, ${x2} ${y2 - curve_amount}, ${x2} ${y2}`;
+  // Create smooth curved path using quadratic Bézier curve
+  const midY = (y1 + y2) / 2;
+  const pathData = `M ${x1} ${y1} Q ${x1} ${midY}, ${x2} ${y2}`;
 
   // White halo background
   const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -248,7 +245,6 @@ function curve(svg,x1,y1,x2,y2,col,dash) {
   bg.setAttribute('stroke','rgba(255,255,255,0.82)');
   bg.setAttribute('stroke-width','5');
   bg.setAttribute('fill','none');
-  bg.setAttribute('stroke-linecap','round');
   if(dash) bg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(bg);
 
@@ -258,8 +254,6 @@ function curve(svg,x1,y1,x2,y2,col,dash) {
   fg.setAttribute('stroke', col);
   fg.setAttribute('stroke-width', '2');
   fg.setAttribute('fill', 'none');
-  fg.setAttribute('stroke-linecap','round');
-  fg.setAttribute('stroke-linejoin','round');
   if(dash) fg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(fg);
 }
