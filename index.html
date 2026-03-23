@@ -235,9 +235,14 @@ function rel(id) {
 }
 
 function curve(svg,x1,y1,x2,y2,col,dash) {
-  // Create smooth curved path using quadratic Bézier curve
+  // Create curly brace { style curve
+  const dist = Math.abs(y2 - y1);
+  const offset = Math.min(dist * 0.5, 80); // Brace width
   const midY = (y1 + y2) / 2;
-  const pathData = `M ${x1} ${y1} Q ${x1} ${midY}, ${x2} ${y2}`;
+
+  // Curly brace path: starts at x1, curves out to offset, then back to x2
+  const pathData = `M ${x1} ${y1} C ${x1 + offset} ${y1 + dist*0.25}, ${x1 + offset} ${midY - dist*0.15}, ${x1 + offset} ${midY}
+                           C ${x1 + offset} ${midY + dist*0.15}, ${x1 + offset} ${y2 - dist*0.25}, ${x2} ${y2}`;
 
   // White halo background
   const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -245,6 +250,8 @@ function curve(svg,x1,y1,x2,y2,col,dash) {
   bg.setAttribute('stroke','rgba(255,255,255,0.82)');
   bg.setAttribute('stroke-width','5');
   bg.setAttribute('fill','none');
+  bg.setAttribute('stroke-linecap','round');
+  bg.setAttribute('stroke-linejoin','round');
   if(dash) bg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(bg);
 
@@ -254,6 +261,8 @@ function curve(svg,x1,y1,x2,y2,col,dash) {
   fg.setAttribute('stroke', col);
   fg.setAttribute('stroke-width', '2');
   fg.setAttribute('fill', 'none');
+  bg.setAttribute('stroke-linecap','round');
+  bg.setAttribute('stroke-linejoin','round');
   if(dash) fg.setAttribute('stroke-dasharray','6 4');
   svg.appendChild(fg);
 }
