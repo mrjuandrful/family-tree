@@ -718,21 +718,8 @@ function rel(id) {
 }
 
 function curve(svg,x1,y1,x2,y2,col,dash) {
-  // Create S-shaped curve that adapts to actual card positions
-  const dist = Math.abs(y2 - y1);
-  const xDist = Math.abs(x2 - x1);
-
-  // Offset scales with distance between elements
-  let offset = Math.min(dist * 0.5, 80);
-  if (xDist > 50) offset = Math.min(xDist * 0.4, 60); // Smaller offset if cards are far apart
-
-  const midY = (y1 + y2) / 2;
-  const midX = (x1 + x2) / 2;
-
-  // S curve: curves out and back in
-  const pathData = `M ${x1} ${y1}
-                    C ${x1 + offset} ${y1 + dist*0.3}, ${midX} ${midY - dist*0.2}, ${midX} ${midY}
-                    C ${midX} ${midY + dist*0.2}, ${x2 - offset} ${y2 - dist*0.3}, ${x2} ${y2}`;
+  // Simple vertical and horizontal lines (no curves)
+  const pathData = `M ${x1} ${y1} L ${x1} ${y2} L ${x2} ${y2}`;
 
   const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
   bg.setAttribute('d', pathData);
