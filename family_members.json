@@ -1,0 +1,776 @@
+{
+  "title": "Perez · Zitt Family Tree",
+  "subtitle": "Juan Miguel Perez & Melissa Perez (née Zitt) · Updated March 2026",
+  "members": [
+    {
+      "id": "miguel-dalda",
+      "name": "Miguel Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Great-Grandfather",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Zolia's father"
+    },
+    {
+      "id": "ana-martinez-gg",
+      "name": "Ana Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Great-Grandmother",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Zolia's mother"
+    },
+    {
+      "id": "delia-martinez",
+      "name": "Delia Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "felix-hermida",
+      "name": "Felix Hermida",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle-in-law",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "rosa-martinez",
+      "name": "Rosa Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "guillermo-herrera",
+      "name": "Guillermo Herrera",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle-in-law",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "ramon-martinez",
+      "name": "Ramon Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "zoraida-dalda",
+      "name": "Zoraida Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Miguel Dalda's sister"
+    },
+    {
+      "id": "maria-luisa-dalda",
+      "name": "Maria Luisa Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Miguel Dalda's sister"
+    },
+    {
+      "id": "lucas-santana",
+      "name": "Lucas Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Great-Grandfather",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Evaristo's father"
+    },
+    {
+      "id": "maria-rangel",
+      "name": "Maria Rangel",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Great-Grandmother",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Evaristo's mother"
+    },
+    {
+      "id": "guillermina-santana",
+      "name": "Guillermina Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Lucas's sister"
+    },
+    {
+      "id": "ramona-santana",
+      "name": "Ramona Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "great-grandparents",
+      "side": "perez",
+      "note": "Lucas's sister"
+    },
+    {
+      "id": "gp-gonzalo",
+      "name": "Gonzalo Perez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grandfather",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "gp-osiris",
+      "name": "Osiris Perez",
+      "maiden": "née Ramos",
+      "dob": "b. Unknown",
+      "relationship": "Grandmother",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "gp-evaristo",
+      "name": "Evaristo Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grandfather",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "gp-zolia",
+      "name": "Zolia Santana",
+      "maiden": "née Dalda",
+      "dob": "b. Unknown",
+      "relationship": "Grandmother",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "ana-luisa-dalda",
+      "name": "Ana Luisa Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "manolo-fundora",
+      "name": "Manolo Fundora",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle-in-law",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "gerardo-dalda",
+      "name": "Gerardo Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "elisa-gorrin",
+      "name": "Elisa Gorrin",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt-in-law",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "juan-santana-bro",
+      "name": "Juan Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Uncle",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "juana-santana",
+      "name": "Juana Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Aunt",
+      "generation": "grandparents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "zp-gf",
+      "name": "Paternal Grandfather",
+      "maiden": "Zitt family",
+      "dob": "To be researched",
+      "relationship": "Grandfather",
+      "generation": "grandparents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "zp-gm",
+      "name": "Paternal Grandmother",
+      "maiden": "Zitt family",
+      "dob": "To be researched",
+      "relationship": "Grandmother",
+      "generation": "grandparents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "coppola-gf",
+      "name": "Louis Joseph Coppola",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grandfather",
+      "generation": "grandparents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "coppola-gm",
+      "name": "Anne Coppola",
+      "maiden": "née Neri",
+      "dob": "b. Unknown",
+      "relationship": "Grandmother",
+      "generation": "grandparents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "father",
+      "name": "Juan Gonzalo Perez",
+      "maiden": null,
+      "dob": "b. June 11, 1955",
+      "relationship": "Father",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "mother",
+      "name": "Zaida Perez",
+      "maiden": "née Santana",
+      "dob": "b. Sep 13, 1957",
+      "relationship": "Mother",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "olga",
+      "name": "Olga",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Stepmother",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "dayanna-father",
+      "name": "Unknown Father",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Dayanna's Father",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "ana-osiris",
+      "name": "Ana Osiris Martinez",
+      "maiden": "née Perez",
+      "dob": "b. Unknown",
+      "relationship": "Aunt (Paternal)",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "antonio-sr",
+      "name": "Antonio Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Uncle",
+      "generation": "parents",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "dennis-zitt",
+      "name": "Dennis Herbert Zitt",
+      "maiden": null,
+      "dob": "b. Apr 27, 1949",
+      "relationship": "Father-in-law",
+      "generation": "parents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "anna-zitt",
+      "name": "Anna Louise Zitt",
+      "maiden": "née Coppola",
+      "dob": "b. Mar 25, 1952",
+      "relationship": "Mother-in-law",
+      "generation": "parents",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "juan",
+      "name": "Juan Miguel Perez",
+      "maiden": null,
+      "dob": "b. Oct 28, 1980",
+      "relationship": "You",
+      "generation": "gen3",
+      "side": null,
+      "note": null
+    },
+    {
+      "id": "melissa",
+      "name": "Melissa Perez",
+      "maiden": "née Zitt",
+      "dob": "b. Mar 15, 1981",
+      "relationship": "Spouse",
+      "generation": "gen3",
+      "side": null,
+      "note": null
+    },
+    {
+      "id": "gonzalo",
+      "name": "Gonzalo E. Perez",
+      "maiden": null,
+      "dob": "b. July 27, 1976",
+      "relationship": "Brother",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "daniel",
+      "name": "Daniel Orlando Perez",
+      "maiden": null,
+      "dob": "b. June 23, 1982",
+      "relationship": "Brother",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "jennifer",
+      "name": "Jennifer Perez",
+      "maiden": "née Safanova",
+      "dob": null,
+      "relationship": "Sister-in-law",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "joanna",
+      "name": "Joanna Marie Perez",
+      "maiden": null,
+      "dob": "b. 2005",
+      "relationship": "Half-Sister",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "dayanna",
+      "name": "Dayanna",
+      "maiden": "Last name TBD",
+      "dob": null,
+      "relationship": "Joanna's Half-Sister",
+      "generation": "gen3",
+      "side": "perez",
+      "note": "Olga's daughter, different father"
+    },
+    {
+      "id": "antonio-jr",
+      "name": "Antonio Martinez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Cousin",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "ana-martinez",
+      "name": "Ana Margarita Ramirez",
+      "maiden": "née Martinez",
+      "dob": "b. Unknown",
+      "relationship": "Cousin",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "daniel-ramirez",
+      "name": "Daniel Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Cousin-in-law",
+      "generation": "gen3",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "deanna",
+      "name": "Deanna Marie Lebet",
+      "maiden": "née Zitt",
+      "dob": "b. Aug 13, 1969",
+      "relationship": "Sister-in-law",
+      "generation": "gen3",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "patricia",
+      "name": "Patricia Ann Welton",
+      "maiden": "née Zitt",
+      "dob": "b. June 12, 1971",
+      "relationship": "Sister-in-law",
+      "generation": "gen3",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "michael-welton",
+      "name": "Michael Welton",
+      "maiden": null,
+      "dob": null,
+      "relationship": "Brother-in-law",
+      "generation": "gen3",
+      "side": "zitt",
+      "note": null
+    },
+    {
+      "id": "dennis-wayne",
+      "name": "Dennis Wayne Zitt",
+      "maiden": null,
+      "dob": "b. June 14, 1974",
+      "relationship": "Brother-in-law",
+      "generation": "gen3",
+      "side": "zitt",
+      "note": "Divorced · No children"
+    },
+    {
+      "id": "julian",
+      "name": "Julian Lucas Perez",
+      "maiden": null,
+      "dob": "b. Feb 4, 2011",
+      "relationship": "Son",
+      "generation": "children",
+      "side": null,
+      "note": "Juan & Melissa's child"
+    },
+    {
+      "id": "alexa",
+      "name": "Alexa Santana Perez",
+      "maiden": null,
+      "dob": "b. Feb 4, 2015",
+      "relationship": "Daughter",
+      "generation": "children",
+      "side": null,
+      "note": "Juan & Melissa's child"
+    },
+    {
+      "id": "sophia",
+      "name": "Sophia Quinn Perez",
+      "maiden": null,
+      "dob": "b. Oct 4, 2022",
+      "relationship": "Daughter",
+      "generation": "children",
+      "side": null,
+      "note": "Juan & Melissa's child"
+    },
+    {
+      "id": "sena",
+      "name": "Sena Sakura Perez",
+      "maiden": null,
+      "dob": "b. April 2014",
+      "relationship": "Niece",
+      "generation": "children",
+      "side": "perez",
+      "note": "Daniel & Jennifer's daughter"
+    },
+    {
+      "id": "melenia",
+      "name": "Melenia Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "2nd Cousin",
+      "generation": "children",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "alejandro",
+      "name": "Alejandro Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "2nd Cousin",
+      "generation": "children",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "mya",
+      "name": "Mya Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "2nd Cousin",
+      "generation": "children",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "alexandria",
+      "name": "Alexandria Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "2nd Cousin",
+      "generation": "children",
+      "side": "perez",
+      "note": null
+    },
+    {
+      "id": "jamila",
+      "name": "Jamila Ramirez",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "2nd Cousin",
+      "generation": "children",
+      "side": "perez",
+      "note": "Mother unknown"
+    },
+    {
+      "id": "john-lebet-jr",
+      "name": "John Lebet",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Nephew",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Deanna's son"
+    },
+    {
+      "id": "kevin-lebet",
+      "name": "Kevin Lebet",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Nephew",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Deanna's son"
+    },
+    {
+      "id": "matthew-lebet",
+      "name": "Matthew Lebet",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Nephew",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Deanna's son"
+    },
+    {
+      "id": "kaitlyn",
+      "name": "Kaitlyn",
+      "maiden": "Different father",
+      "dob": null,
+      "relationship": "Niece",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Patricia's daughter, different father"
+    },
+    {
+      "id": "stephanie-welton",
+      "name": "Stephanie Welton",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Niece",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Patricia & Michael's daughter"
+    },
+    {
+      "id": "brian-welton",
+      "name": "Brian Welton",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Nephew",
+      "generation": "children",
+      "side": "zitt",
+      "note": "Patricia & Michael's son"
+    },
+    {
+      "id": "enerita-hermida",
+      "name": "Enerita Hermida",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Delia & Felix's child"
+    },
+    {
+      "id": "elisa-hermida",
+      "name": "Elisa Hermida",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Delia & Felix's child"
+    },
+    {
+      "id": "oreste-hermida",
+      "name": "Oreste Hermida",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Delia & Felix's child"
+    },
+    {
+      "id": "nilda-herrera",
+      "name": "Nilda Herrera",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Rosa & Guillermo's child"
+    },
+    {
+      "id": "daizy-herrera",
+      "name": "Daizy Herrera",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Rosa & Guillermo's child"
+    },
+    {
+      "id": "luis-herrera",
+      "name": "Luis Herrera",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Rosa & Guillermo's child"
+    },
+    {
+      "id": "maria-belen-dalda",
+      "name": "Maria Belen Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Maria Luisa Dalda's child"
+    },
+    {
+      "id": "guilfredo-dalda",
+      "name": "Guilfredo Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Maria Luisa Dalda's child"
+    },
+    {
+      "id": "ana-herminia-fundora",
+      "name": "Ana Herminia Fundora",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Ana Luisa & Manolo's child"
+    },
+    {
+      "id": "belkys-dalda",
+      "name": "Belkys Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Gerardo & Elisa's child"
+    },
+    {
+      "id": "idalmis-dalda",
+      "name": "Idalmis Dalda",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Gerardo & Elisa's child"
+    },
+    {
+      "id": "nancy-santana",
+      "name": "Nancy Santana",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Juan Santana's child"
+    },
+    {
+      "id": "juan-santana-jr",
+      "name": "Juan Santana Jr.",
+      "maiden": null,
+      "dob": "b. Unknown",
+      "relationship": "Grand-Cousin",
+      "generation": "gp-cousins",
+      "side": "perez",
+      "note": "Juan Santana's child"
+    }
+  ]
+}
